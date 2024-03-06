@@ -1,9 +1,58 @@
 @import-normalize;
 
+@font-face {
+	font-family: 'Avenir';
+	src:
+		local('Avenir'),
+		url('./assets/fonts/avenir/Avenir-Black.ttf') format('truetype');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: 'Avenir';
+	src:
+		local('Avenir'),
+		url('./assets/fonts/avenir/Avenir-Book.ttf') format('truetype');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: 'Avenir';
+	src:
+		local('Avenir'),
+		url('./assets/fonts/avenir/Avenir-Medium.ttf') format('truetype');
+	font-weight: 500;
+}
+
 :root {
+	--font-family-main: 'Avenir', sans-serif;
+	--font-size-main: 14px;
+	--font-weight-light: 300;
+	--font-weight-normal: 500;
+	--font-weight-bold: 600;
+
+	--color-lightest-grey: #d1d1d1;
+	--color-lightest-grey-1: #f6f6f6;
+	--color-light-grey: #9c9c9c;
+	--color-grey: #707070;
+	--color-dark-grey: #303030;
+
+	--color-lightest-red: #ff768e;
+	--color-light-red: #ff5761;
+	--color-red: #e4163a;
+	--color-dark-red: #c60e2e;
+
+	--color-white: #ffffff;
+}
+
+html {
+	font-size: var(--font-size-main);
 }
 
 body {
+	font-family: var(--font-family-main);
+	font-size: 1rem;
+	font-weight: var(--font-weight-normal);
 }
 
 *,
