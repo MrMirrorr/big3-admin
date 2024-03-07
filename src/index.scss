@@ -60,3 +60,5 @@ body {
 *::after {
 	box-sizing: border-box;
 }
+
+@import './ui/select/select.scss';
