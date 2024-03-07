@@ -34,7 +34,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 		ref,
 	) => {
 		const [showPassword, setShowPassword] = useState(false);
-		console.log('input');
 
 		const togglePasswordVisibility = () => {
 			setShowPassword(!showPassword);
