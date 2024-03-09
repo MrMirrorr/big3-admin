@@ -1,0 +1,15 @@
+.appLayout {
+	min-height: 100dvh;
+}
+
+.flex {
+	display: flex;
+}
+
+.content {
+	width: 100%;
+	padding: 32px 12px;
+	display: flex;
+	justify-content: center;
+	background-color: var(--color-lightest-grey-1);
+}

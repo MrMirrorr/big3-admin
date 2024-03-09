@@ -5,7 +5,7 @@ interface Props {
 	name: string;
 }
 
-export const Profile = ({ name }: Props) => {
+export const Profile = ({ name = '' }: Props) => {
 	return (
 		<div className={styles.profile}>
 			<div>{name}</div>

@@ -1,16 +1,15 @@
+import { Link } from 'react-router-dom';
 import { Logo } from '../../ui';
 import { Profile } from '../profile/Profile';
 import styles from './Header.module.scss';
 
-interface Props {
-	name: string;
-}
-
-export const Header = ({ name }: Props) => {
+export const Header = () => {
 	return (
 		<header className={styles.header}>
-			<Logo />
-			<Profile name={name} />
+			<Link to="/">
+				<Logo />
+			</Link>
+			<Profile name="John Doe" />
 		</header>
 	);
 };
