@@ -1,11 +1,14 @@
 import { BrowserRouter, Route, Routes as ReactRoutes } from 'react-router-dom';
+import { Registration } from './registration/Registration';
+import { Authorization } from './authorization/Authorization';
 
 export const Routes = () => {
 	return (
 		<BrowserRouter>
 			<ReactRoutes>
 				<Route path="/" element={<div>Главная страница</div>} />
-				<Route path="/registration" element={<div>Регистрация</div>} />
+				<Route path="/registration" element={<Registration />} />
+				<Route path="/authorization" element={<Authorization />} />
 			</ReactRoutes>
 		</BrowserRouter>
 	);

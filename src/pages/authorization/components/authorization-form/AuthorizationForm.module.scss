@@ -1,0 +1,22 @@
+.formBlock {
+	width: 100%;
+	max-width: 414px;
+	padding: 0 24px;
+}
+
+.title {
+	margin: 0 0 32px;
+	font-size: 36px;
+	color: var(--color-blue);
+	font-weight: var(--font-weight-light);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.message {
+	text-align: center;
+}

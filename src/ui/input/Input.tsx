@@ -21,8 +21,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 	(
 		{
 			type = 'text',
-			value = '',
-			onChange = () => {},
 			placeholder = '',
 			disabled = false,
 			error = false,
@@ -30,6 +28,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 			label = '',
 			id = '',
 			name = '',
+			...props
 		},
 		ref,
 	) => {
@@ -56,19 +55,19 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 						id={id}
 						name={name}
 						ref={ref}
-						value={value}
-						onChange={onChange}
 						placeholder={placeholder}
 						disabled={disabled}
 						className={inputClasses}
+						{...props}
 					/>
 					{type === 'password' && (
 						<button
+							type="button"
 							className={styles.visibilityToggle}
 							onClick={togglePasswordVisibility}
 							title={showPassword ? 'Hide password' : 'Show password'}
 						>
-							{showPassword ? <EyeOff /> : <Eye />}
+							{showPassword ? <Eye /> : <EyeOff />}
 						</button>
 					)}
 				</div>

@@ -5,7 +5,7 @@
 	src:
 		local('Avenir'),
 		url('./assets/fonts/avenir/Avenir-Black.ttf') format('truetype');
-	font-weight: 600;
+	font-weight: 800;
 }
 
 @font-face {
@@ -13,7 +13,7 @@
 	src:
 		local('Avenir'),
 		url('./assets/fonts/avenir/Avenir-Book.ttf') format('truetype');
-	font-weight: 300;
+	font-weight: 400;
 }
 
 @font-face {
@@ -27,9 +27,9 @@
 :root {
 	--font-family-main: 'Avenir', sans-serif;
 	--font-size-main: 14px;
-	--font-weight-light: 300;
+	--font-weight-light: 400;
 	--font-weight-normal: 500;
-	--font-weight-bold: 600;
+	--font-weight-bold: 800;
 
 	--color-lightest-grey: #d1d1d1;
 	--color-lightest-grey-1: #f6f6f6;
@@ -42,6 +42,9 @@
 	--color-red: #e4163a;
 	--color-dark-red: #c60e2e;
 
+	--color-light-blue: #f5fbff;
+	--color-blue: #344472;
+
 	--color-white: #ffffff;
 }
 
@@ -50,6 +53,7 @@ html {
 }
 
 body {
+	margin: 0;
 	font-family: var(--font-family-main);
 	font-size: 1rem;
 	font-weight: var(--font-weight-normal);
@@ -59,6 +63,12 @@ body {
 *::before,
 *::after {
 	box-sizing: border-box;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
 
 @import './ui/select/select.scss';

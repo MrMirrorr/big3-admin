@@ -1,0 +1,8 @@
+.link {
+	color: var(--color-red);
+	text-decoration: underline;
+
+	&.disabled {
+		color: var(--color-lightest-grey);
+	}
+}

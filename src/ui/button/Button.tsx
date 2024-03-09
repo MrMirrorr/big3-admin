@@ -2,6 +2,7 @@ import cn from 'classnames';
 import styles from './Button.module.scss';
 
 interface Props {
+	type?: 'button' | 'submit';
 	children?: React.ReactNode;
 	variant?: 'primary' | 'secondary';
 	disabled?: boolean;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export const Button = ({
+	type = 'button',
 	variant = 'primary',
 	disabled = false,
 	onClick,
@@ -19,7 +21,12 @@ export const Button = ({
 	});
 
 	return (
-		<button className={buttonClasses} onClick={onClick} disabled={disabled}>
+		<button
+			type={type}
+			className={buttonClasses}
+			onClick={onClick}
+			disabled={disabled}
+		>
 			{children}
 		</button>
 	);
