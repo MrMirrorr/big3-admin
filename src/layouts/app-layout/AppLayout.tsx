@@ -14,7 +14,7 @@ export const AppLayout = ({ children }: Props) => {
 				<Header />
 				<div className={styles.flex}>
 					<Sidebar />
-					<div className={styles.content}>{children}</div>
+					{children}
 				</div>
 			</div>
 		</MainContainer>

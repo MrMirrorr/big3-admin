@@ -1,0 +1,29 @@
+.topPanel {
+	width: 100%;
+	margin-bottom: 32px;
+	display: flex;
+	// justify-content: space-between;
+	gap: 20px;
+}
+
+.search {
+	flex-basis: 364px;
+	min-width: 160px;
+	display: flex;
+}
+
+.multiSelect {
+	flex-basis: 364px;
+	min-width: 160px;
+}
+
+.btn {
+	flex-grow: 1;
+	text-align: right;
+
+	button {
+		display: inline-block;
+		max-width: 104px;
+		white-space: nowrap;
+	}
+}

@@ -4,9 +4,10 @@ import styles from './SmallCard.module.scss';
 interface Props {
 	imgUrl: string;
 	title: string;
-	description: string;
+	description?: string;
 	number?: string;
 	isPlayer?: boolean;
+	year?: number;
 }
 
 export const SmallCard = ({
@@ -15,6 +16,7 @@ export const SmallCard = ({
 	description = '',
 	number = '',
 	isPlayer = false,
+	year,
 }: Props) => {
 	const cardClasses = cn(styles.card, {
 		[styles.player]: isPlayer,
@@ -29,7 +31,7 @@ export const SmallCard = ({
 				<div className={styles.title}>
 					{title} <span>{number && number}</span>
 				</div>
-				<div className={styles.description}>{description}</div>
+				<div className={styles.description}>{year || description}</div>
 			</div>
 		</div>
 	);

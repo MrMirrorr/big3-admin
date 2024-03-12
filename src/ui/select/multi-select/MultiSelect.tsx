@@ -5,7 +5,7 @@ import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 
 interface Props {
-	options: IPositionOption[];
+	options: IPositionOption[] | undefined;
 	value: [] | IPositionOption[];
 	onChange: (newValue: MultiValue<'' | IPositionOption>) => void;
 }
@@ -25,7 +25,7 @@ interface Props {
 export const MultiSelect = ({ options, value, onChange }: Props) => {
 	return (
 		<Select
-			className="single-select"
+			className="select select--multi"
 			classNamePrefix="custom-select"
 			components={animatedComponents}
 			options={options}

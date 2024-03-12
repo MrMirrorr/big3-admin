@@ -1,4 +1,4 @@
-.single-select-wrapper {
+.select-wrapper {
 	position: relative;
 	max-width: 366px;
 
@@ -20,27 +20,35 @@
 	}
 }
 
-.single-select {
+.select {
 	width: 100%;
 	max-width: 366px;
-	min-height: 40px;
 	color: var(--color-dark-grey);
 
 	.custom-select {
 		&__value-container {
 			padding-left: 12px;
+			flex-wrap: nowrap;
+			overflow-x: hidden;
+
+			div {
+				flex-shrink: 0;
+			}
 		}
 
 		&__control {
-			border: none;
-			background-color: var(--color-lightest-grey-1);
+			height: 40px;
 			box-shadow: none;
+			cursor: pointer;
+
+			&--is-focused:hover {
+				border-color: var(--color-lightest-grey);
+			}
 		}
 
 		&__multi-value {
 			border-radius: 4px;
 			background-color: var(--color-red);
-			overflow: hidden;
 
 			&__label {
 				color: var(--color-white);
@@ -71,7 +79,7 @@
 
 		&__menu {
 			margin-top: 1px;
-			border: 1px solid var(--color-light-grey);
+			border: 0.5px solid var(--color-lightest-grey);
 			box-shadow: none;
 			animation: scale-in 0.35s ease-in-out;
 		}
@@ -93,6 +101,20 @@
 			&--is-selected {
 				background-color: var(--color-dark-red);
 			}
+		}
+	}
+
+	&--single .custom-select {
+		&__control {
+			border: none;
+			background-color: var(--color-lightest-grey-1);
+		}
+	}
+
+	&--multi .custom-select {
+		&__control {
+			border: 0.5px solid var(--color-lightest-grey);
+			background-color: var(--color-white);
 		}
 	}
 }

@@ -1,0 +1,12 @@
+.content {
+	width: 100%;
+	padding: 32px 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--color-lightest-grey-1);
+}
+
+.contentInner {
+	flex-grow: 1;
+}

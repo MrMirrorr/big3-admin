@@ -29,14 +29,15 @@ interface Props {
 
 export const SingleSelect = ({ options, value, onChange, reset }: Props) => {
 	return (
-		<div className="single-select-wrapper">
+		<div className="select-wrapper">
 			<Select
-				className="single-select"
+				className="select select--single"
 				classNamePrefix="custom-select"
 				options={options}
 				value={value}
 				onChange={onChange}
 				isSearchable={false}
+				menuIsOpen
 			/>
 			<button className="reset-btn" onClick={reset}>
 				<Close />
