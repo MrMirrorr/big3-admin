@@ -2,7 +2,7 @@ import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg';
 import styles from './Profile.module.scss';
 
 interface Props {
-	name: string;
+	name: string | null;
 }
 
 export const Profile = ({ name = '' }: Props) => {

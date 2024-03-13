@@ -1,5 +1,14 @@
+import { useAuthInitialization } from './hooks/useAuthInitialization';
 import { Routes } from './pages/routes';
+import { Toast } from './components';
 
 export const App = () => {
-	return <Routes />;
+	useAuthInitialization();
+
+	return (
+		<>
+			<Routes />
+			<Toast />
+		</>
+	);
 };
