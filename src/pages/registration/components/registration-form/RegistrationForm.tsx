@@ -1,5 +1,5 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { authValidationScheme } from '../../../../validation-schemes';
+import { useRegForm } from '../../hooks/useRegForm';
 import { Button, Checkbox, Input, Link } from '../../../../ui';
 import styles from './RegistrationForm.module.scss';
 
@@ -7,23 +7,9 @@ interface Props {
 	title: string;
 }
 
-interface Inputs {
-	name: string;
-	login: string;
-	password: string;
-	confirm: string;
-	accept: boolean;
-}
-
 export const RegistrationForm = ({ title }: Props) => {
-	const {
-		register,
-		handleSubmit,
-		getValues,
-		formState: { errors },
-	} = useForm<Inputs>();
-
-	const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+	const { register, handleSubmit, getValues, onSubmit, isLoading, errors } =
+		useRegForm();
 
 	return (
 		<div className={styles.formBlock}>
@@ -74,7 +60,9 @@ export const RegistrationForm = ({ title }: Props) => {
 					error={Boolean(errors.accept)}
 					errorMessage={errors?.accept?.message}
 				/>
-				<Button type="submit">Sign Up</Button>
+				<Button type="submit" disabled={isLoading}>
+					Sign Up
+				</Button>
 				<div className={styles.message}>
 					Already a member? <Link to="/authorization">Sign in</Link>
 				</div>
