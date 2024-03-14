@@ -5,14 +5,14 @@ export const authorizationApi = api.injectEndpoints({
 	endpoints: (build) => ({
 		register: build.mutation<ILoginResponse, IRegisterRequest>({
 			query: (credentials) => ({
-				url: 'Auth/SignUp',
+				url: 'api/Auth/SignUp',
 				method: 'POST',
 				body: credentials,
 			}),
 		}),
 		login: build.mutation<ILoginResponse, ILoginRequest>({
 			query: (credentials) => ({
-				url: 'Auth/SignIn',
+				url: 'api/Auth/SignIn',
 				method: 'POST',
 				body: credentials,
 			}),

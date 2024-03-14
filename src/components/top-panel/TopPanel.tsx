@@ -3,13 +3,16 @@ import { IPositionOption } from '../../dto-mock/IPositionOption';
 import { Button, MultiSelect, SearchInput } from '../../ui';
 import styles from './TopPanel.module.scss';
 import { MultiValue } from 'react-select';
+import { useNavigate } from 'react-router';
 
 interface Props {
-	isPlayersPage?: boolean;
+	pageVariant: 'team' | 'player';
 	filterOptions?: IPositionOption[];
 }
 
-export const TopPanel = ({ isPlayersPage = false, filterOptions = [] }: Props) => {
+export const TopPanel = ({ pageVariant = 'team', filterOptions = [] }: Props) => {
+	const navigate = useNavigate();
+
 	const [currentPositions, setCurrentPositions] = useState(['']);
 
 	const getValues = () => {
@@ -22,12 +25,22 @@ export const TopPanel = ({ isPlayersPage = false, filterOptions = [] }: Props) =
 		setCurrentPositions(newValue.map((v: any) => v.value));
 	};
 
+	const handlerClickAddBtn = () => {
+		if (pageVariant === 'team') {
+			navigate('/teams/add');
+		}
+
+		if (pageVariant === 'player') {
+			navigate('players/add');
+		}
+	};
+
 	return (
 		<div className={styles.topPanel}>
 			<div className={styles.search}>
 				<SearchInput placeholder="Search..." />
 			</div>
-			{isPlayersPage && (
+			{pageVariant === 'player' && (
 				<div className={styles.multiSelect}>
 					<MultiSelect
 						options={filterOptions}
@@ -37,7 +50,7 @@ export const TopPanel = ({ isPlayersPage = false, filterOptions = [] }: Props) =
 				</div>
 			)}
 			<div className={styles.btn}>
-				<Button>Add +</Button>
+				<Button onClick={handlerClickAddBtn}>Add +</Button>
 			</div>
 		</div>
 	);

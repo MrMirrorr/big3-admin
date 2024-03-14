@@ -9,7 +9,6 @@ interface Props {
 
 export const PrivateComponent = ({ children }: Props) => {
 	const isAuthenticated = useAppSelector(selectIsAuthUser);
-	console.log(isAuthenticated);
 
 	if (!isAuthenticated) {
 		return <Navigate to="/authorization" replace />;

@@ -1,0 +1,39 @@
+.maskImg {
+	width: 100%;
+	max-width: 336px;
+	height: auto;
+	min-height: 200px;
+	max-height: 261px;
+	padding: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 10px;
+	background-color: var(--color-light-grey);
+	opacity: 50%;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+
+	input {
+		display: none;
+	}
+}
+
+.errorMsg {
+	margin-top: 2px;
+
+	font-size: 0.86rem;
+	line-height: 1.5;
+	color: var(--color-lightest-red);
+}
+
+.addPhotoImg {
+	width: 22%;
+	min-width: 41px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

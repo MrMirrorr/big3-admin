@@ -11,7 +11,7 @@ interface Props {
 export const MenuItem = ({ path = '', iconComponent = null, title = '' }: Props) => {
 	const location = useLocation();
 
-	const isActive = location.pathname === path;
+	const isActive = location.pathname.includes(path);
 
 	const menuItemClasses = cn(styles.menuItem, {
 		[styles.active]: isActive,
