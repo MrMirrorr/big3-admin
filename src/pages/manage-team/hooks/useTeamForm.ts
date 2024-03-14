@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../../store/store';
 import { useUploadImageMutation } from '../../../api/requests/image';
@@ -15,6 +16,7 @@ interface Inputs {
 }
 
 export const useTeamForm = () => {
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [uploadImage, { isLoading: isUploadImgLoading }] = useUploadImageMutation();
@@ -87,6 +89,7 @@ export const useTeamForm = () => {
 							variant: 'success',
 						}),
 					);
+					navigate('/teams');
 				});
 
 			console.log('Данные новой команды', responseTeamData);

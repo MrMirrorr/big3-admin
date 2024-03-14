@@ -1,0 +1,43 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	max-width: 364px;
+	max-height: 380px;
+	border-radius: 4px;
+	background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
+	overflow: hidden;
+}
+
+.top {
+	height: 280px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		max-width: 150px;
+	}
+}
+
+.bottom {
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	background-color: var(--color-dark-grey);
+	overflow: hidden;
+}
+
+.name {
+	font-size: 18px;
+	color: var(--color-white);
+	text-align: center;
+}
+
+.description {
+	color: var(--color-light-grey);
+}

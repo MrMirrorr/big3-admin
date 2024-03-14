@@ -1,4 +1,6 @@
 export * from './small-card/SmallCard';
+export * from './cards-list/CardsList';
+export * from './small-card-skeleton/SmallCardSkeleton';
 export * from './big-card-team/BigCardTeam';
 export * from './big-card-player/BigCardPlayer';
 export * from './breadcrumbs/Breadcrumbs';

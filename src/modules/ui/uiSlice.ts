@@ -10,6 +10,9 @@ interface IUiState {
 		isHovered: boolean;
 		variant: ToastVariantType;
 	};
+	search: {
+		value: string;
+	};
 }
 
 const initialState: IUiState = {
@@ -18,6 +21,9 @@ const initialState: IUiState = {
 		isVisible: false,
 		isHovered: false,
 		variant: 'success',
+	},
+	search: {
+		value: '',
 	},
 };
 
@@ -35,18 +41,21 @@ const uiSlice = createSlice({
 		},
 		hideToast(state) {
 			if (!state.toast.isHovered) {
-				// Проверяем, не наведён ли курсор на тост
 				state.toast.isVisible = false;
 			}
 		},
 		setToastHovered(state, action: PayloadAction<boolean>) {
 			state.toast.isHovered = action.payload;
 		},
+		setSearchValue(state, action: PayloadAction<string>) {
+			state.search.value = action.payload;
+		},
 	},
 });
 
-export const { showToast, hideToast, setToastHovered } = uiSlice.actions;
+export const { showToast, hideToast, setToastHovered, setSearchValue } = uiSlice.actions;
 
 export const selectToast = (state: RootState) => state.ui.toast;
+export const selectSearch = (state: RootState) => state.ui.search;
 
 export default uiSlice.reducer;
