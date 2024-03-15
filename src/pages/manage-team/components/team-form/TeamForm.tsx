@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ImageUpload, withBreadcrumbs } from '../../../../components';
 import { Button, Input } from '../../../../ui';
-import { teamValidationScheme } from '../../../../validation-schemes/teamValidationScheme';
+import { teamFormValidation } from './teamFormValidation';
 import { useTeamForm } from '../../hooks/useTeamForm';
 import styles from './TeamForm.module.scss';
 
@@ -38,7 +38,7 @@ export const TeamForm = () => {
 					type="text"
 					label="Name"
 					id="name"
-					{...register('name', teamValidationScheme.name)}
+					{...register('name', teamFormValidation.name)}
 					error={Boolean(errors.name)}
 					errorMessage={errors?.name?.message}
 				/>
@@ -46,7 +46,7 @@ export const TeamForm = () => {
 					type="text"
 					label="Division"
 					id="division"
-					{...register('division', teamValidationScheme.division)}
+					{...register('division', teamFormValidation.division)}
 					error={Boolean(errors.division)}
 					errorMessage={errors?.division?.message}
 				/>
@@ -54,7 +54,7 @@ export const TeamForm = () => {
 					type="text"
 					label="Conference"
 					id="conference"
-					{...register('conference', teamValidationScheme.conference)}
+					{...register('conference', teamFormValidation.conference)}
 					error={Boolean(errors.conference)}
 					errorMessage={errors?.conference?.message}
 				/>
@@ -62,7 +62,7 @@ export const TeamForm = () => {
 					type="number"
 					label="Year of foundation"
 					id="year"
-					{...register('year', teamValidationScheme.year)}
+					{...register('year', teamFormValidation.year)}
 					error={Boolean(errors.year)}
 					errorMessage={errors?.year?.message}
 				/>

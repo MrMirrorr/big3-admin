@@ -1,0 +1,20 @@
+.wrapper {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty {
+	max-width: 556px;
+	max-height: 570px;
+	padding: 48px 37px;
+	text-align: center;
+	border-radius: 15px;
+	background-color: var(--color-white);
+	overflow: hidden;
+}
+
+h1 {
+	font-weight: var(--font-weight-bold);
+}

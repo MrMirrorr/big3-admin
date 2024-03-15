@@ -1,4 +1,4 @@
-import { authValidationScheme } from '../../../../validation-schemes';
+import { authorizationFormValidation } from './authorizationFormValidation';
 import { useAuthForm } from '../../hooks/useAuthForm';
 import { Button, Input, Link } from '../../../../ui';
 import styles from './AuthorizationForm.module.scss';
@@ -18,7 +18,7 @@ export const AuthorizationForm = ({ title }: Props) => {
 					type="text"
 					label="Login"
 					id="login"
-					{...register('login', authValidationScheme.login)}
+					{...register('login', authorizationFormValidation.login)}
 					error={Boolean(errors.login)}
 					errorMessage={errors?.login?.message}
 				/>
@@ -26,7 +26,7 @@ export const AuthorizationForm = ({ title }: Props) => {
 					type="password"
 					label="Password"
 					id="password"
-					{...register('password', authValidationScheme.password)}
+					{...register('password', authorizationFormValidation.password)}
 					error={Boolean(errors.password)}
 					errorMessage={errors?.password?.message}
 				/>

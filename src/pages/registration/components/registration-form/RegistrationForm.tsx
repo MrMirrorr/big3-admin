@@ -1,4 +1,4 @@
-import { authValidationScheme } from '../../../../validation-schemes';
+import { registrationFormValidation } from './registrationFormValidation';
 import { useRegForm } from '../../hooks/useRegForm';
 import { Button, Checkbox, Input, Link } from '../../../../ui';
 import styles from './RegistrationForm.module.scss';
@@ -19,7 +19,7 @@ export const RegistrationForm = ({ title }: Props) => {
 					type="text"
 					label="Name"
 					id="name"
-					{...register('name', authValidationScheme.name)}
+					{...register('name', registrationFormValidation.name)}
 					error={Boolean(errors.name)}
 					errorMessage={errors?.name?.message}
 				/>
@@ -27,7 +27,7 @@ export const RegistrationForm = ({ title }: Props) => {
 					type="text"
 					label="Login"
 					id="login"
-					{...register('login', authValidationScheme.login)}
+					{...register('login', registrationFormValidation.login)}
 					error={Boolean(errors.login)}
 					errorMessage={errors?.login?.message}
 				/>
@@ -35,7 +35,7 @@ export const RegistrationForm = ({ title }: Props) => {
 					type="password"
 					label="Password"
 					id="password"
-					{...register('password', authValidationScheme.password)}
+					{...register('password', registrationFormValidation.password)}
 					error={Boolean(errors.password)}
 					errorMessage={errors?.password?.message}
 				/>
@@ -44,7 +44,7 @@ export const RegistrationForm = ({ title }: Props) => {
 					label="Enter your password again"
 					id="confirm"
 					{...register('confirm', {
-						...authValidationScheme.confirm,
+						...registrationFormValidation.confirm,
 						validate: (value) => {
 							const { password } = getValues();
 							return password === value || 'Passwords should match!';
@@ -56,7 +56,7 @@ export const RegistrationForm = ({ title }: Props) => {
 				<Checkbox
 					id="accept"
 					label="I accept the agreement"
-					{...register('accept', authValidationScheme.accept)}
+					{...register('accept', registrationFormValidation.accept)}
 					error={Boolean(errors.accept)}
 					errorMessage={errors?.accept?.message}
 				/>

@@ -13,6 +13,10 @@ interface IUiState {
 	search: {
 		value: string;
 	};
+	pagination: {
+		page: number;
+		pageSize: number;
+	};
 }
 
 const initialState: IUiState = {
@@ -24,6 +28,10 @@ const initialState: IUiState = {
 	},
 	search: {
 		value: '',
+	},
+	pagination: {
+		page: 1,
+		pageSize: 3,
 	},
 };
 
@@ -48,14 +56,29 @@ const uiSlice = createSlice({
 			state.toast.isHovered = action.payload;
 		},
 		setSearchValue(state, action: PayloadAction<string>) {
+			state.pagination.page = 1;
 			state.search.value = action.payload;
+		},
+		setPage(state, action: PayloadAction<number>) {
+			state.pagination.page = action.payload;
+		},
+		setPageSize(state, action: PayloadAction<number>) {
+			state.pagination.pageSize = action.payload;
 		},
 	},
 });
 
-export const { showToast, hideToast, setToastHovered, setSearchValue } = uiSlice.actions;
+export const {
+	showToast,
+	hideToast,
+	setToastHovered,
+	setSearchValue,
+	setPage,
+	setPageSize,
+} = uiSlice.actions;
 
 export const selectToast = (state: RootState) => state.ui.toast;
 export const selectSearch = (state: RootState) => state.ui.search;
+export const selectPagination = (state: RootState) => state.ui.pagination;
 
 export default uiSlice.reducer;

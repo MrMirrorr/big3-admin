@@ -1,4 +1,4 @@
-export const teamValidationScheme = {
+export const teamFormValidation = {
 	name: {
 		required: 'Required',
 		pattern: {

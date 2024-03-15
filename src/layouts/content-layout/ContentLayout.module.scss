@@ -1,5 +1,7 @@
 .content {
 	width: 100%;
+	min-height: calc(100dvh - 80px);
+	margin-left: 140px;
 	padding: 32px 80px;
 	display: flex;
 	flex-direction: column;
@@ -10,4 +12,11 @@
 .contentInner {
 	width: 100%;
 	flex-grow: 1;
+}
+
+.pagination {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }

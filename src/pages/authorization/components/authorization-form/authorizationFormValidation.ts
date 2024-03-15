@@ -1,4 +1,4 @@
-export const authValidationScheme = {
+export const authorizationFormValidation = {
 	name: {
 		required: 'Required',
 		maxLength: {
