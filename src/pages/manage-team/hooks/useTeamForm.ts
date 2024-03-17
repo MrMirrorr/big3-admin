@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAppDispatch } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { useUploadImageMutation } from '../../../api/requests/image';
 import { useCreateTeamMutation } from '../../../api/requests/team';
 import { prepareImageFormData } from '../../../utils/prepareImageFormData';
 import { displayToast } from '../../../modules/ui/uiThunk';
+import { selectTeam } from '../../../modules/team/teamSlice';
 
 interface Inputs {
-	image: File | null;
+	image: File | string | null;
 	name: string;
 	division: string;
 	conference: string;
@@ -18,6 +19,7 @@ interface Inputs {
 export const useTeamForm = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+	const team = useAppSelector(selectTeam);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [uploadImage, { isLoading: isUploadImgLoading }] = useUploadImageMutation();
 	const [createTeam, { isLoading: isCreateTeamLoading }] = useCreateTeamMutation();
@@ -38,6 +40,17 @@ export const useTeamForm = () => {
 			year: 0,
 		},
 	});
+
+	useEffect(() => {
+		if (team) {
+			setPreviewUrl(team.imageUrl);
+			setValue('image', team.imageUrl);
+			setValue('name', team.name);
+			setValue('conference', team.conference);
+			setValue('division', team.division);
+			setValue('year', team.foundationYear);
+		}
+	}, [team]);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { files } = event.target;

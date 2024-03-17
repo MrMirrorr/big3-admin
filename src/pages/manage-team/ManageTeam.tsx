@@ -7,17 +7,30 @@ interface Props {
 	pageVariant: 'add' | 'edit';
 }
 
-const crumbs = [
-	{ text: 'Teams', url: '/teams' },
-	{ text: 'Add new team', url: '/teams/add' },
-];
-
 export const ManageTeam = ({ pageVariant }: Props) => {
+	let title: string = '';
+
+	switch (pageVariant) {
+		case 'add':
+			title = 'Add new team';
+			break;
+		case 'edit':
+			title = 'Edit team';
+			break;
+		default:
+			break;
+	}
+
+	const crumbs = [
+		{ text: 'Teams', url: '/teams' },
+		{ text: title, url: '/teams/manage' },
+	];
+
 	return (
 		<AppLayout>
 			<ContentLayout>
 				<Breadcrumbs crumbs={crumbs} />
-				<TeamForm />
+				<TeamForm pageVariant={pageVariant} />
 			</ContentLayout>
 		</AppLayout>
 	);

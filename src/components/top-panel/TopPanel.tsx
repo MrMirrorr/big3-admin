@@ -38,7 +38,7 @@ export const TopPanel = ({ pageVariant = 'team', filterOptions = [] }: Props) =>
 
 	const handlerClickAddBtn = () => {
 		if (pageVariant === 'team') {
-			navigate('/teams/add');
+			navigate('/teams/manage');
 		}
 
 		if (pageVariant === 'player') {

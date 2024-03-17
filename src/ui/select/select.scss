@@ -38,6 +38,8 @@
 
 		&__control {
 			height: 40px;
+			border: 0.5px solid var(--color-lightest-grey);
+			background-color: var(--color-white);
 			box-shadow: none;
 			cursor: pointer;
 
@@ -78,10 +80,12 @@
 		}
 
 		&__menu {
-			margin-top: 1px;
+			margin: 1px 0;
 			border: 0.5px solid var(--color-lightest-grey);
+			border-radius: 4px;
 			box-shadow: none;
 			animation: scale-in 0.35s ease-in-out;
+			overflow: hidden;
 		}
 
 		&__menu-list {
@@ -101,21 +105,15 @@
 			&--is-selected {
 				background-color: var(--color-dark-red);
 			}
+
+			&:active {
+				background-color: var(--color-lightest-red);
+			}
 		}
 	}
 
-	&--single .custom-select {
-		&__control {
-			border: none;
-			background-color: var(--color-lightest-grey-1);
-		}
-	}
-
-	&--multi .custom-select {
-		&__control {
-			border: 0.5px solid var(--color-lightest-grey);
-			background-color: var(--color-white);
-		}
+	&--mini {
+		max-width: 88px;
 	}
 }
 

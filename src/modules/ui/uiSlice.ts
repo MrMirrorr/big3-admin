@@ -31,7 +31,7 @@ const initialState: IUiState = {
 	},
 	pagination: {
 		page: 1,
-		pageSize: 3,
+		pageSize: 6,
 	},
 };
 

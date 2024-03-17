@@ -7,6 +7,9 @@ export const teamApi = api.injectEndpoints({
 			query: (params) => `api/Team/GetTeams?${params}`,
 			providesTags: ['Teams'],
 		}),
+		getTeam: build.query<INewTeamResponse, string>({
+			query: (params) => `api/Team/Get?${params}`,
+		}),
 		createTeam: build.mutation<INewTeamResponse, INewTeamRequest>({
 			query: (formData) => ({
 				url: 'api/Team/Add',
@@ -18,4 +21,4 @@ export const teamApi = api.injectEndpoints({
 	}),
 });
 
-export const { useCreateTeamMutation, useGetAllTeamsQuery } = teamApi;
+export const { useCreateTeamMutation, useGetAllTeamsQuery, useGetTeamQuery } = teamApi;

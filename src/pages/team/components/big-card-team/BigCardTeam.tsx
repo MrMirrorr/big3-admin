@@ -1,34 +1,32 @@
-import { BigCardHeader } from '../big-card-header/BigCardHeader';
+import { INewTeamResponse } from '../../../../api/dto/ITeam';
+import { BigCardHeader } from '../../../../components/big-card-header/BigCardHeader';
 import styles from './BigCardTeam.module.scss';
 
-interface Props {
-	imgUrl: string;
-	title: string;
-	year: string;
-	division: string;
-	conference: string;
-}
-
 export const BigCardTeam = ({
-	imgUrl = '',
-	title = '',
-	year = '',
-	division = '',
-	conference = '',
-}: Props) => {
+	id,
+	imageUrl,
+	name,
+	conference,
+	division,
+	foundationYear,
+}: INewTeamResponse) => {
+	const crumbs = [
+		{ text: 'Teams', url: '/teams' },
+		{ text: name, url: `/teams/${id}` },
+	];
 	return (
 		<div className={styles.card}>
-			<BigCardHeader title={title} />
+			<BigCardHeader crumbs={crumbs} id={id} type="team" />
 
 			<div className={styles.info}>
 				<div className={styles.image}>
-					<img src={imgUrl} alt={title} />
+					<img src={imageUrl} alt={name} />
 				</div>
 				<div className={styles.description}>
-					<h1 className={styles.title}>{title}</h1>
+					<h1 className={styles.title}>{name}</h1>
 					<div className={styles.infoGroup}>
 						<div className={styles.label}>Year of foundation</div>
-						<div className={styles.value}>{year}</div>
+						<div className={styles.value}>{foundationYear}</div>
 					</div>
 					<div className={styles.infoGroup}>
 						<div className={styles.label}>Division</div>

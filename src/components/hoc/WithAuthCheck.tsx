@@ -11,7 +11,7 @@ export const WithAuthCheck = ({ children }: Props) => {
 	const isAuthenticated = useAppSelector(selectIsAuthUser);
 
 	if (isAuthenticated) {
-		return <Navigate to="/" replace />;
+		return <Navigate to="/teams" replace />;
 	}
 
 	return children;

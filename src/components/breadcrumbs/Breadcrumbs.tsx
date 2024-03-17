@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from './Breadcrumbs.module.scss';
 
-interface Crumb {
+export interface ICrumb {
 	text: string;
 	url: string;
 }
 
 interface Props {
-	crumbs: Crumb[];
+	crumbs: ICrumb[];
 }
 
 export const Breadcrumbs = ({ crumbs }: Props) => {

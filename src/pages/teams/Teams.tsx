@@ -1,16 +1,15 @@
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { selectPagination, selectSearch, setPage } from '../../modules/ui/uiSlice';
+import {
+	selectPagination,
+	selectSearch,
+	setPage,
+	setPageSize,
+} from '../../modules/ui/uiSlice';
 import { displayToast } from '../../modules/ui/uiThunk';
 import { useGetAllTeamsQuery } from '../../api/requests/team';
 import { AppLayout } from '../../layouts/app-layout/AppLayout';
 import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
-import {
-	CardsList,
-	EmptyHere,
-	Pagination,
-	SmallCardSkeleton,
-	TopPanel,
-} from '../../components';
+import { CardsList, EmptyHere, PaginationPanel, TopPanel } from '../../components';
 import { SmallTeamCard } from './components/small-team-card/SmallTeamCard';
 import { ReactComponent as EmptyImg } from '../../assets/icons/empty-teams.svg';
 
@@ -22,9 +21,17 @@ export const Teams = () => {
 		`Name=${searchValue}&Page=${page}&PageSize=${pageSize}`,
 	);
 
+	const handlePageChange = (selectedPage: number) => {
+		dispatch(setPage(selectedPage));
+	};
+
+	const handleChangePageCount = (selectedValue: number) => {
+		dispatch(setPageSize(selectedValue));
+	};
+
 	if (isError) {
 		dispatch(
-			displayToast('Error loading data', {
+			displayToast('Error loading teams data', {
 				variant: 'error',
 			}),
 		);
@@ -35,19 +42,17 @@ export const Teams = () => {
 			<ContentLayout
 				topPanel={<TopPanel pageVariant="team" />}
 				pagination={
-					<Pagination
+					<PaginationPanel
 						totalCount={data?.count}
 						page={page}
 						pageSize={pageSize}
-						onClickAction={(selectedPage) => dispatch(setPage(selectedPage))}
+						handlePageChange={handlePageChange}
+						handleChangePageCount={handleChangePageCount}
 					/>
 				}
 			>
 				{isLoading || isFetching ? (
-					<CardsList
-						items={[...Array(6)]}
-						renderItem={(_, index) => <SmallCardSkeleton key={index} />}
-					/>
+					<div>Loading ...</div>
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.

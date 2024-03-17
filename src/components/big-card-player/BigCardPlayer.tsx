@@ -24,7 +24,7 @@ export const BigCardPlayer = ({
 }: Props) => {
 	return (
 		<div className={styles.card}>
-			<BigCardHeader title={title} isPlayer={true} />
+			{/* <BigCardHeader title={title}  /> */}
 
 			<div className={styles.info}>
 				<div className={styles.image}>

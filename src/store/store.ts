@@ -2,12 +2,14 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '../api/baseRequest';
 import authorization from '../modules/authorization/authorizationSlice';
+import team from '../modules/team/teamSlice';
 import ui from '../modules/ui/uiSlice';
 
 export const store = configureStore({
 	reducer: {
 		[api.reducerPath]: api.reducer,
 		authorization,
+		team,
 		ui,
 	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),

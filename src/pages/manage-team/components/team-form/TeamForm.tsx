@@ -1,11 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { ImageUpload, withBreadcrumbs } from '../../../../components';
+import { ImageUpload } from '../../../../components';
 import { Button, Input } from '../../../../ui';
 import { teamFormValidation } from './teamFormValidation';
 import { useTeamForm } from '../../hooks/useTeamForm';
 import styles from './TeamForm.module.scss';
 
-export const TeamForm = () => {
+interface Props {
+	pageVariant: 'add' | 'edit';
+}
+
+export const TeamForm = ({ pageVariant }: Props) => {
 	const navigate = useNavigate();
 	const {
 		register,
@@ -83,5 +87,3 @@ export const TeamForm = () => {
 		</form>
 	);
 };
-
-export default withBreadcrumbs(TeamForm);
