@@ -26,14 +26,14 @@ export const TeamForm = ({ pageVariant }: Props) => {
 			<div className={styles.left}>
 				<ImageUpload
 					id="image"
-					{...register('image', {
-						validate: (value) => {
-							return value !== null || 'Please select image';
-						},
+					{...register('imageFile', {
+						// validate: (value) => {
+						// 	return value !== null || 'Please select image';
+						// },
 					})}
 					previewUrl={previewUrl}
-					error={Boolean(errors.image)}
-					errorMessage={errors?.image?.message}
+					error={Boolean(errors.imageFile)}
+					errorMessage={errors?.imageFile?.message}
 					onChange={handleFileChange}
 				/>
 			</div>

@@ -1,0 +1,56 @@
+.row {
+	cursor: pointer;
+	transition: background-color 0.1s ease-in-out;
+
+	&:hover {
+		background-color: var(--color-lightest-grey-1);
+	}
+
+	td {
+		width: auto;
+		border-bottom: 1px solid var(--color-light-grey);
+
+		&.player {
+			width: 100%;
+		}
+	}
+
+	&:last-child td {
+		border-bottom: none;
+	}
+}
+
+.number {
+	text-align: center;
+}
+
+.player {
+	.flex {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.left {
+		width: 40px;
+		height: 40px;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+
+		img {
+			border-radius: 50%;
+		}
+	}
+
+	.right {
+		text-wrap: nowrap;
+
+		.position {
+			font-size: 12px;
+			color: var(--color-light-grey);
+		}
+	}
+}

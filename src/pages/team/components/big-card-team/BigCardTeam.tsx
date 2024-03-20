@@ -3,12 +3,12 @@ import { BigCardHeader } from '../../../../components/big-card-header/BigCardHea
 import styles from './BigCardTeam.module.scss';
 
 export const BigCardTeam = ({
-	id,
-	imageUrl,
-	name,
-	conference,
-	division,
-	foundationYear,
+	id = 940,
+	imageUrl = '',
+	name = 'Name',
+	conference = 'conference',
+	division = 'division',
+	foundationYear = 1999,
 }: INewTeamResponse) => {
 	const crumbs = [
 		{ text: 'Teams', url: '/teams' },

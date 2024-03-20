@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAppDispatch } from '../../../store/store';
 import { useUploadImageMutation } from '../../../api/requests/image';
-import { useCreateTeamMutation } from '../../../api/requests/team';
+import { useCreateTeamMutation, useGetTeamQuery } from '../../../api/requests/team';
 import { prepareImageFormData } from '../../../utils/prepareImageFormData';
 import { displayToast } from '../../../modules/ui/uiThunk';
-import { selectTeam } from '../../../modules/team/teamSlice';
 
 interface Inputs {
-	image: File | string | null;
+	imageFile?: File | null;
 	name: string;
 	division: string;
 	conference: string;
@@ -17,9 +16,12 @@ interface Inputs {
 }
 
 export const useTeamForm = () => {
+	const { id } = useParams<{ id?: string }>();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const team = useAppSelector(selectTeam);
+	const { data: teamData } = useGetTeamQuery(id ?? `id=${id}`, {
+		skip: id === undefined,
+	});
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [uploadImage, { isLoading: isUploadImgLoading }] = useUploadImageMutation();
 	const [createTeam, { isLoading: isCreateTeamLoading }] = useCreateTeamMutation();
@@ -33,7 +35,7 @@ export const useTeamForm = () => {
 		formState: { errors },
 	} = useForm<Inputs>({
 		defaultValues: {
-			image: null,
+			imageFile: null,
 			name: '',
 			division: '',
 			conference: '',
@@ -42,15 +44,15 @@ export const useTeamForm = () => {
 	});
 
 	useEffect(() => {
-		if (team) {
-			setPreviewUrl(team.imageUrl);
-			setValue('image', team.imageUrl);
-			setValue('name', team.name);
-			setValue('conference', team.conference);
-			setValue('division', team.division);
-			setValue('year', team.foundationYear);
+		if (teamData) {
+			setPreviewUrl(teamData.imageUrl);
+			setValue('name', teamData.name);
+			setValue('conference', teamData.conference);
+			setValue('division', teamData.division);
+			setValue('year', teamData.foundationYear);
 		}
-	}, [team]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [teamData]);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { files } = event.target;
@@ -62,8 +64,8 @@ export const useTeamForm = () => {
 		reader.onload = () => {
 			if (typeof reader.result === 'string') {
 				setPreviewUrl(reader.result);
-				setValue('image', file);
-				trigger('image');
+				setValue('imageFile', file);
+				trigger('imageFile');
 			}
 		};
 
@@ -74,24 +76,30 @@ export const useTeamForm = () => {
 
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		try {
-			const preparedImage = prepareImageFormData(data.image);
-			const responseImageUrl = await uploadImage(preparedImage)
-				.unwrap()
-				.catch(() => {
-					dispatch(
-						displayToast('Invalid image upload', {
-							variant: 'error',
-						}),
-					);
-					throw new Error('Invalid image upload');
-				});
+			let imageUrl: string | undefined = teamData?.imageUrl ?? '';
+
+			if (data.imageFile) {
+				const preparedImage = prepareImageFormData(data.imageFile);
+				const responseImageUrl = await uploadImage(preparedImage)
+					.unwrap()
+					.catch(() => {
+						dispatch(
+							displayToast('Invalid image upload', {
+								variant: 'error',
+							}),
+						);
+						throw new Error('Invalid image upload');
+					});
+
+				imageUrl = responseImageUrl;
+			}
 
 			const teamFormData = {
 				name: data.name,
 				division: data.division,
 				conference: data.conference,
 				foundationYear: data.year,
-				imageUrl: responseImageUrl,
+				imageUrl: imageUrl,
 			};
 
 			const responseTeamData = await createTeam(teamFormData)

@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../store/store';
 import { useGetTeamQuery } from '../../api/requests/team';
 import { setTeam } from '../../modules/team/teamSlice';
 import { BigCardTeam } from '../../components';
+import { RosterTable } from './components/roster-table/RosterTable';
 
 export const Team = () => {
 	const dispatch = useAppDispatch();
@@ -21,17 +22,25 @@ export const Team = () => {
 	return (
 		<AppLayout>
 			<ContentLayout>
-				{isLoading ? (
+				{/* {isLoading ? (
 					<div>Loading ...</div>
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.
 					</div>
-				) : team ? (
-					<BigCardTeam {...team} />
-				) : null}
+				) : team ? ( */}
+				<BigCardTeam
+					// {...team}
+					id={940}
+					imageUrl=""
+					name="Name"
+					conference="conference"
+					division="division"
+					foundationYear={1999}
+				/>
+				{/* // ) : null} */}
+				<RosterTable />
 			</ContentLayout>
-			;
 		</AppLayout>
 	);
 };

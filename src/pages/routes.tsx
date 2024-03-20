@@ -30,33 +30,33 @@ export const Routes = () => {
 				<Route
 					path="/teams"
 					element={
-						<PrivateComponent>
-							<Teams />
-						</PrivateComponent>
+						// <PrivateComponent>
+						<Teams />
+						// </PrivateComponent>
 					}
 				/>
 				<Route
 					path="/teams/manage"
 					element={
-						<PrivateComponent>
-							<ManageTeam pageVariant="add" />
-						</PrivateComponent>
+						// <PrivateComponent>
+						<ManageTeam pageVariant="add" />
+						// </PrivateComponent>
 					}
 				/>
 				<Route
 					path="/teams/manage/:id"
 					element={
-						<PrivateComponent>
-							<ManageTeam pageVariant="edit" />
-						</PrivateComponent>
+						// <PrivateComponent>
+						<ManageTeam pageVariant="edit" />
+						// </PrivateComponent>
 					}
 				/>
 				<Route
 					path="/teams/:id"
 					element={
-						<PrivateComponent>
-							<Team />
-						</PrivateComponent>
+						// <PrivateComponent>
+						<Team />
+						// </PrivateComponent>
 					}
 				/>
 			</ReactRoutes>
