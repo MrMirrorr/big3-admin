@@ -6,7 +6,7 @@ import styles from './ControlledSingleSelect.module.scss';
 interface Props {
 	id: string;
 	label: string;
-	options: IOption[];
+	options: IOption<string | number>[];
 	control: any;
 	rules: any;
 	error: boolean;
@@ -40,9 +40,7 @@ export const ControlledSingleSelect = ({
 						ref={ref}
 						value={options.find((o) => o.value === value)}
 						onChange={(e: any) =>
-							e.value
-								? onChange(e.value)
-								: onChange(e.map((o: any) => o.value))
+							e?.value ? onChange(e.value) : onChange(e)
 						}
 					/>
 				)}

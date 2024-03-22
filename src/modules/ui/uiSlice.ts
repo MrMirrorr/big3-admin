@@ -20,6 +20,9 @@ interface IUiState {
 		page: number;
 		pageSize: number;
 	};
+	filters: {
+		byTeams: string[];
+	};
 }
 
 const initialState: IUiState = {
@@ -38,6 +41,9 @@ const initialState: IUiState = {
 	pagination: {
 		page: 1,
 		pageSize: 6,
+	},
+	filters: {
+		byTeams: [],
 	},
 };
 
@@ -77,6 +83,9 @@ const uiSlice = createSlice({
 		setPageSize(state, action: PayloadAction<number>) {
 			state.pagination.pageSize = action.payload;
 		},
+		setFilterByTeams(state, action: PayloadAction<string[]>) {
+			state.filters.byTeams = action.payload;
+		},
 	},
 });
 
@@ -89,11 +98,13 @@ export const {
 	setSearchValue,
 	setPage,
 	setPageSize,
+	setFilterByTeams,
 } = uiSlice.actions;
 
 export const selectToast = (state: RootState) => state.ui.toast;
 export const selectSidebar = (state: RootState) => state.ui.sidebar;
 export const selectSearch = (state: RootState) => state.ui.search;
 export const selectPagination = (state: RootState) => state.ui.pagination;
+export const selectFilters = (state: RootState) => state.ui.filters;
 
 export default uiSlice.reducer;

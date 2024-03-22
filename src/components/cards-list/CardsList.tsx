@@ -1,12 +1,16 @@
+import { IPlayerResponse } from '../../api/dto/IPlayer';
 import { ITeamResponse } from '../../api/dto/ITeam';
 import styles from './CardsList.module.scss';
 
-interface Props {
-	items?: ITeamResponse[];
-	renderItem: (item: ITeamResponse, index?: number) => JSX.Element;
+interface Props<T> {
+	items?: T[];
+	renderItem: (item: T, index?: number) => JSX.Element;
 }
 
-export const CardsList = ({ items, renderItem }: Props) => {
+export const CardsList = <T extends ITeamResponse | IPlayerResponse>({
+	items,
+	renderItem,
+}: Props<T>) => {
 	return (
 		<div className={styles.cardsList}>
 			{items?.map((item, index) => renderItem(item, index))}

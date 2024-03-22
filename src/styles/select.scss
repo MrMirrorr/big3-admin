@@ -48,6 +48,11 @@
 			}
 		}
 
+		&__placeholder {
+			font-size: 1rem;
+			color: var(--color-grey);
+		}
+
 		&__multi-value {
 			border-radius: 4px;
 			background-color: var(--color-red);

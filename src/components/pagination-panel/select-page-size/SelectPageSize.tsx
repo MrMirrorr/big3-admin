@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Select, { SingleValue } from 'react-select';
-import { IOption, OPTIONS } from './selectOptions';
+import { OPTIONS } from './selectOptions';
+import { IOption } from '../../../ui/sharedTypes';
 
 interface Props {
 	pageSize: number;
@@ -9,11 +10,11 @@ interface Props {
 
 export const SelectPageSize = ({ pageSize, handleChangePageCount }: Props) => {
 	const initialOption = OPTIONS.find((option) => option.value === pageSize);
-	const [selectedOption, setSelectedOption] = useState<IOption | null>(
+	const [selectedOption, setSelectedOption] = useState<IOption<number> | null>(
 		initialOption ? initialOption : null,
 	);
 
-	const handleChangeOption = (selected: SingleValue<IOption>) => {
+	const handleChangeOption = (selected: SingleValue<IOption<number>>) => {
 		setSelectedOption(selected);
 
 		if (selected?.value) {

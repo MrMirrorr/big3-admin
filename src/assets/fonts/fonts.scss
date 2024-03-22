@@ -21,3 +21,11 @@
 		url('./avenir/Avenir-Medium.ttf') format('truetype');
 	font-weight: 500;
 }
+
+@font-face {
+	font-family: 'Montserrat';
+	src:
+		local('Montserrat'),
+		url('./montserrat/Montserrat-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+}

@@ -1,37 +1,28 @@
-import { useEffect, useState } from 'react';
-import { Button, SearchInput } from '../../ui';
 import { useNavigate } from 'react-router';
+import { IOption } from '../../ui/sharedTypes';
 import { useAppDispatch } from '../../store/store';
-import { setSearchValue } from '../../modules/ui/uiSlice';
-import { useDebounce } from '../../hooks';
+import { useGetAllTeamsQuery } from '../../api/requests/team';
+import { setFilterByTeams } from '../../modules/ui/uiSlice';
+import { useDebouncedSearch } from '../../hooks';
+import { Button, SearchInput, MultiSelect } from '../../ui';
 import styles from './TopPanel.module.scss';
 
 interface Props {
 	pageVariant: 'team' | 'player';
 }
 
-export const TopPanel = ({ pageVariant = 'team' }: Props) => {
-	const navigate = useNavigate();
+export const TopPanel = ({ pageVariant }: Props) => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+	const { searchTerm, setSearchTerm } = useDebouncedSearch();
 
-	const [searchTerm, setSearchTerm] = useState('');
-	const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+	const { data: teams } = useGetAllTeamsQuery('');
+	const teamOptions: IOption<string>[] =
+		teams?.data.map((t) => ({ value: t.id.toString(), label: t.name })) || [];
 
-	useEffect(() => {
-		dispatch(setSearchValue(debouncedSearchTerm));
-	}, [debouncedSearchTerm, dispatch]);
-
-	// const [currentPositions, setCurrentPositions] = useState(['']);
-
-	// const getValues = () => {
-	// 	return currentPositions
-	// 		? filterOptions.filter((o) => currentPositions.indexOf(o.value) >= 0)
-	// 		: [];
-	// };
-
-	// const onChangeMulti = (newValue: MultiValue<'' | IPositionOption>) => {
-	// 	setCurrentPositions(newValue.map((v: any) => v.value));
-	// };
+	const handlerChangeFilterByTeams = (selectedValues: string[]) => {
+		dispatch(setFilterByTeams(selectedValues));
+	};
 
 	const handlerClickAddBtn = () => {
 		if (pageVariant === 'team') {
@@ -39,7 +30,7 @@ export const TopPanel = ({ pageVariant = 'team' }: Props) => {
 		}
 
 		if (pageVariant === 'player') {
-			navigate('players/add');
+			navigate('/players/manage');
 		}
 	};
 
@@ -54,11 +45,10 @@ export const TopPanel = ({ pageVariant = 'team' }: Props) => {
 			</div>
 			{pageVariant === 'player' && (
 				<div className={styles.multiSelect}>
-					{/* <MultiSelect
-						options={filterOptions}
-						value={getValues()}
-						onChange={onChangeMulti}
-					/> */}
+					<MultiSelect
+						options={teamOptions}
+						onChangeHandler={handlerChangeFilterByTeams}
+					/>
 				</div>
 			)}
 			<div className={styles.btn}>

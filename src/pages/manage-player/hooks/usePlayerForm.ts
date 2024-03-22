@@ -84,16 +84,14 @@ export const usePlayerForm = () => {
 				avatarUrl: imageUrl,
 			};
 
-			const responsePlayerData = await createPlayer(playerFormData)
-				.unwrap()
-				.then(() => {
-					dispatch(
-						displayToast('The new player has been successfully created.', {
-							variant: 'success',
-						}),
-					);
-					navigate(`/players/${id}`);
-				});
+			const responsePlayerData = await createPlayer(playerFormData).unwrap();
+
+			dispatch(
+				displayToast('The new player has been successfully created.', {
+					variant: 'success',
+				}),
+			);
+			navigate(`/players/${responsePlayerData.id}`);
 
 			console.log('Данные нового игрока', responsePlayerData);
 		} catch (err: any) {

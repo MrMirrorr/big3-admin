@@ -13,11 +13,11 @@ export const PlayerForm = () => {
 	const navigate = useNavigate();
 
 	const { data: positions } = useGetPositionsQuery();
-	const positionOptions: IOption[] =
+	const positionOptions: IOption<string>[] =
 		positions?.map((p) => ({ value: p, label: p })) || [];
 
 	const { data: teams } = useGetAllTeamsQuery('');
-	const teamOptions: IOption[] =
+	const teamOptions: IOption<number>[] =
 		teams?.data.map((t) => ({ value: t.id, label: t.name })) || [];
 
 	const {

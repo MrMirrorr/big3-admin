@@ -5,6 +5,7 @@ import { Authorization } from './authorization/Authorization';
 import { Teams } from './teams/Teams';
 import { ManageTeam } from './manage-team/ManageTeam';
 import { Team } from './team/Team';
+import { Players } from './players/Players';
 import { ManagePlayer } from './manage-player/ManagePlayer';
 
 export const Routes = () => {
@@ -57,6 +58,14 @@ export const Routes = () => {
 					element={
 						// <PrivateComponent>
 						<Team />
+						// </PrivateComponent>
+					}
+				/>
+				<Route
+					path="/players"
+					element={
+						// <PrivateComponent>
+						<Players />
 						// </PrivateComponent>
 					}
 				/>
