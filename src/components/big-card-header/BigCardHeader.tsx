@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg';
 import { Breadcrumbs, ICrumb } from '../breadcrumbs/Breadcrumbs';
@@ -7,32 +6,34 @@ import styles from './BigCardHeader.module.scss';
 interface Props {
 	crumbs: ICrumb[];
 	id: number;
-	type: 'team' | 'player';
+	onEditHandler: (id: number) => void;
+	onDeleteHandler: (id: number) => void;
+	isLoading: boolean;
 }
 
-export const BigCardHeader = ({ crumbs, id, type }: Props) => {
-	const navigate = useNavigate();
-	let to: string = '';
-
-	switch (type) {
-		case 'team':
-			to = `/teams/manage/${id}`;
-			break;
-		case 'player':
-			to = `/players/manage/${id}`;
-			break;
-		default:
-			break;
-	}
-
+export const BigCardHeader = ({
+	crumbs,
+	id,
+	onEditHandler,
+	onDeleteHandler,
+	isLoading,
+}: Props) => {
 	return (
 		<div className={styles.controlPanel}>
 			<Breadcrumbs crumbs={crumbs} />
 			<div className={styles.controls}>
-				<button className={styles.editBtn} onClick={() => navigate(to)}>
+				<button
+					className={styles.editBtn}
+					onClick={() => onEditHandler(id)}
+					disabled={isLoading}
+				>
 					<EditIcon />
 				</button>
-				<button className={styles.deleteBtn}>
+				<button
+					className={styles.deleteBtn}
+					onClick={() => onDeleteHandler(id)}
+					disabled={isLoading}
+				>
 					<DeleteIcon />
 				</button>
 			</div>

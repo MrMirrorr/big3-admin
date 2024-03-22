@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { INewTeamResponse } from '../../api/dto/ITeam';
+import { ITeamResponse } from '../../api/dto/ITeam';
 
 export type ToastVariantType = 'success' | 'error';
 
 interface ITeamState {
-	team: INewTeamResponse | null;
+	team: ITeamResponse | null;
 }
 
 const initialState: ITeamState = {
@@ -16,7 +16,7 @@ const teamSlice = createSlice({
 	name: 'team',
 	initialState,
 	reducers: {
-		setTeam(state, action: PayloadAction<INewTeamResponse>) {
+		setTeam(state, action: PayloadAction<ITeamResponse>) {
 			state.team = action.payload;
 		},
 		resetTeam(state) {

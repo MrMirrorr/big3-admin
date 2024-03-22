@@ -5,11 +5,7 @@ import { teamFormValidation } from './teamFormValidation';
 import { useTeamForm } from '../../hooks/useTeamForm';
 import styles from './TeamForm.module.scss';
 
-interface Props {
-	pageVariant: 'add' | 'edit';
-}
-
-export const TeamForm = ({ pageVariant }: Props) => {
+export const TeamForm = () => {
 	const navigate = useNavigate();
 	const {
 		register,
@@ -26,12 +22,8 @@ export const TeamForm = ({ pageVariant }: Props) => {
 			<div className={styles.left}>
 				<ImageUpload
 					id="image"
-					{...register('imageFile', {
-						// validate: (value) => {
-						// 	return value !== null || 'Please select image';
-						// },
-					})}
-					previewUrl={previewUrl}
+					{...register('imageFile')}
+					previewUrl={previewUrl || null}
 					error={Boolean(errors.imageFile)}
 					errorMessage={errors?.imageFile?.message}
 					onChange={handleFileChange}
@@ -74,6 +66,7 @@ export const TeamForm = ({ pageVariant }: Props) => {
 				<div className={styles.controls}>
 					<Button
 						type="button"
+						variant="secondary"
 						disabled={isLoading}
 						onClick={() => navigate(-1)}
 					>

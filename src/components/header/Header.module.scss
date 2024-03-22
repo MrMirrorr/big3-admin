@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .header {
 	width: 100%;
 	max-width: 1440px;
@@ -6,7 +8,28 @@
 	padding: 16px 51px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	background-color: var(--color-white);
 	box-shadow: 0px 1px 10px 0px #d1d1d180;
 	z-index: 10;
+
+	@include main-container;
+
+	@include mobile {
+		height: 62px;
+		justify-content: center;
+	}
+}
+
+.burgerIcon {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 12px;
+	z-index: 1;
+	transform: translateY(-50%);
+
+	@include mobile {
+		display: block;
+	}
 }

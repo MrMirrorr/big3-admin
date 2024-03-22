@@ -59,6 +59,12 @@
 	padding-left: 24px;
 }
 
+.flex {
+	display: flex;
+	gap: 24px;
+	max-width: 366px;
+}
+
 .controls {
 	max-width: 366px;
 	display: flex;

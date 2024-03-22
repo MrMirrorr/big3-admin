@@ -10,6 +10,9 @@ interface IUiState {
 		isHovered: boolean;
 		variant: ToastVariantType;
 	};
+	sidebar: {
+		isOpen: boolean;
+	};
 	search: {
 		value: string;
 	};
@@ -25,6 +28,9 @@ const initialState: IUiState = {
 		isVisible: false,
 		isHovered: false,
 		variant: 'success',
+	},
+	sidebar: {
+		isOpen: false,
 	},
 	search: {
 		value: '',
@@ -52,6 +58,12 @@ const uiSlice = createSlice({
 				state.toast.isVisible = false;
 			}
 		},
+		openSidebar(state) {
+			state.sidebar.isOpen = true;
+		},
+		closeSidebar(state) {
+			state.sidebar.isOpen = false;
+		},
 		setToastHovered(state, action: PayloadAction<boolean>) {
 			state.toast.isHovered = action.payload;
 		},
@@ -71,6 +83,8 @@ const uiSlice = createSlice({
 export const {
 	showToast,
 	hideToast,
+	openSidebar,
+	closeSidebar,
 	setToastHovered,
 	setSearchValue,
 	setPage,
@@ -78,6 +92,7 @@ export const {
 } = uiSlice.actions;
 
 export const selectToast = (state: RootState) => state.ui.toast;
+export const selectSidebar = (state: RootState) => state.ui.sidebar;
 export const selectSearch = (state: RootState) => state.ui.search;
 export const selectPagination = (state: RootState) => state.ui.pagination;
 

@@ -1,4 +1,4 @@
-import { useAuthInitialization } from './hooks/useAuthInitialization';
+import { useAuthInitialization } from './hooks';
 import { Routes } from './pages/routes';
 import { Toast } from './components';
 

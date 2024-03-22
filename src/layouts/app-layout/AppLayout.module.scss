@@ -1,8 +1,16 @@
+@import '/src/styles/mixins.scss';
+
 .appLayout {
 	min-height: 100dvh;
+	position: relative;
+	overflow: hidden;
 }
 
 .flex {
 	display: flex;
 	padding-top: 80px;
+
+	@include mobile {
+		padding-top: 62px;
+	}
 }

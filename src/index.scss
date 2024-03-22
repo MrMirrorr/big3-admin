@@ -1,6 +1,6 @@
 @import-normalize;
 @import './assets/fonts/fonts.scss';
-@import './global-styles/variables.scss';
+@import './styles/variables.scss';
 
 html {
 	font-size: var(--font-size-main);
@@ -25,5 +25,5 @@ img {
 	height: auto;
 }
 
-@import './ui/select/select.scss';
+@import './styles/select.scss';
 @import './components/pagination-panel/pagination/pagination.scss';

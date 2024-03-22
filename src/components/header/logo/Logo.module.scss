@@ -1,0 +1,13 @@
+@import '/src/styles/mixins.scss';
+
+.logo {
+	max-width: 191px;
+
+	svg {
+		width: 100%;
+	}
+
+	@include mobile {
+		max-width: 137px;
+	}
+}

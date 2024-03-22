@@ -37,7 +37,10 @@ export const PaginationPanel = ({
 				page={page}
 				handlePageChange={handlePageChange}
 			/>
-			<SelectPageSize handleChangePageCount={handleChangePageCount} />
+			<SelectPageSize
+				pageSize={pageSize}
+				handleChangePageCount={handleChangePageCount}
+			/>
 		</>
 	);
 };

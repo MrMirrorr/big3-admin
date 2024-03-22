@@ -1,9 +1,9 @@
-import { INewTeamResponse } from '../../api/dto/ITeam';
+import { ITeamResponse } from '../../api/dto/ITeam';
 import styles from './CardsList.module.scss';
 
 interface Props {
-	items?: INewTeamResponse[];
-	renderItem: (item: INewTeamResponse, index?: number) => JSX.Element;
+	items?: ITeamResponse[];
+	renderItem: (item: ITeamResponse, index?: number) => JSX.Element;
 }
 
 export const CardsList = ({ items, renderItem }: Props) => {

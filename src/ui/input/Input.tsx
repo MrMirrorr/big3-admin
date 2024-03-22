@@ -49,7 +49,28 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 				<label className={styles.label} htmlFor={id}>
 					{label}
 				</label>
-				<div className={styles.inputContainer}>
+				{type === 'password' ? (
+					<div className={styles.inputContainer}>
+						<input
+							type={inputType}
+							id={id}
+							name={name}
+							ref={ref}
+							placeholder={placeholder}
+							disabled={disabled}
+							className={inputClasses}
+							{...props}
+						/>
+						<button
+							type="button"
+							className={styles.visibilityToggle}
+							onClick={togglePasswordVisibility}
+							title={showPassword ? 'Hide password' : 'Show password'}
+						>
+							{showPassword ? <Eye /> : <EyeOff />}
+						</button>
+					</div>
+				) : (
 					<input
 						type={inputType}
 						id={id}
@@ -60,17 +81,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 						className={inputClasses}
 						{...props}
 					/>
-					{type === 'password' && (
-						<button
-							type="button"
-							className={styles.visibilityToggle}
-							onClick={togglePasswordVisibility}
-							title={showPassword ? 'Hide password' : 'Show password'}
-						>
-							{showPassword ? <Eye /> : <EyeOff />}
-						</button>
-					)}
-				</div>
+				)}
 				{error && <div className={styles.errorMsg}>{errorMessage}</div>}
 			</div>
 		);

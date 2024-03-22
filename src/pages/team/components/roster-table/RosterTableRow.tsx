@@ -1,8 +1,9 @@
-import { IPlayer } from '../../../../api/dto/IPlayer';
+import { IPlayerResponse } from '../../../../api/dto/IPlayer';
+import { calculateAgeFromDateOfBirth } from '../../../../utils/calculateAgeFromDateOfBirth';
 import styles from './RosterTableRow.module.scss';
 
 interface Props {
-	players: IPlayer[];
+	players?: IPlayerResponse[];
 }
 
 export const RosterTableRow = ({ players = [] }: Props) => {
@@ -17,7 +18,7 @@ export const RosterTableRow = ({ players = [] }: Props) => {
 						<td className={styles.player}>
 							<div className={styles.flex}>
 								<div className={styles.left}>
-									<img src={player.imageUrl} alt={player.name} />
+									<img src={player.avatarUrl || ''} alt={player.name} />
 								</div>
 								<div className={styles.right}>
 									<div className={styles.name}>{player.name}</div>
@@ -29,7 +30,7 @@ export const RosterTableRow = ({ players = [] }: Props) => {
 						</td>
 						<td>{player.height}</td>
 						<td>{player.weight}</td>
-						<td>{player.age}</td>
+						<td>{calculateAgeFromDateOfBirth(player.birthday || '')}</td>
 					</tr>
 				))}
 		</tbody>

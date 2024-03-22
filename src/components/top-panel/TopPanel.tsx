@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-import { IPositionOption } from '../../dto-mock/IPositionOption';
-import { Button, MultiSelect, SearchInput } from '../../ui';
-import styles from './TopPanel.module.scss';
-import { MultiValue } from 'react-select';
+import { Button, SearchInput } from '../../ui';
 import { useNavigate } from 'react-router';
 import { useAppDispatch } from '../../store/store';
 import { setSearchValue } from '../../modules/ui/uiSlice';
-import useDebounce from '../../hooks/useDebounce';
+import { useDebounce } from '../../hooks';
+import styles from './TopPanel.module.scss';
 
 interface Props {
 	pageVariant: 'team' | 'player';
-	filterOptions?: IPositionOption[];
 }
 
-export const TopPanel = ({ pageVariant = 'team', filterOptions = [] }: Props) => {
+export const TopPanel = ({ pageVariant = 'team' }: Props) => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 

@@ -30,7 +30,7 @@ export const ManageTeam = ({ pageVariant }: Props) => {
 		<AppLayout>
 			<ContentLayout>
 				<Breadcrumbs crumbs={crumbs} />
-				<TeamForm pageVariant={pageVariant} />
+				<TeamForm />
 			</ContentLayout>
 		</AppLayout>
 	);

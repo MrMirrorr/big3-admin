@@ -17,6 +17,6 @@ const baseQuery = fetchBaseQuery({
 export const api = createApi({
 	reducerPath: 'splitApi',
 	baseQuery: baseQuery,
-	tagTypes: ['Teams'],
+	tagTypes: ['Teams', 'Players'],
 	endpoints: () => ({}),
 });

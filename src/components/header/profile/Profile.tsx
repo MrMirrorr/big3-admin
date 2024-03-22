@@ -1,4 +1,4 @@
-import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg';
+import { ReactComponent as ProfileIcon } from '../assets/profile.svg';
 import styles from './Profile.module.scss';
 
 interface Props {

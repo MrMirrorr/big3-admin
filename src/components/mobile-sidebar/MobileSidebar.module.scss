@@ -1,0 +1,37 @@
+.sidebar {
+	width: 201px;
+	min-height: calc(100vh - 62px);
+	padding: 32px 0;
+	position: absolute;
+	top: 62px;
+	left: -201px;
+	z-index: 999;
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--color-white);
+	box-shadow: -5px 0px 10px 0px #d1d1d180;
+	overflow: hidden;
+
+	transition:
+		left 0.2s ease-out,
+		opacity 0.2s ease-out;
+
+	&.open {
+		left: 0;
+		opacity: 1;
+	}
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #414141;
+	opacity: 0.6;
+	z-index: 9;
+}

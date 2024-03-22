@@ -5,12 +5,13 @@ import { Authorization } from './authorization/Authorization';
 import { Teams } from './teams/Teams';
 import { ManageTeam } from './manage-team/ManageTeam';
 import { Team } from './team/Team';
+import { ManagePlayer } from './manage-player/ManagePlayer';
 
 export const Routes = () => {
 	return (
 		<BrowserRouter>
 			<ReactRoutes>
-				<Route path="/" element={<Navigate to="authorization" />} />
+				<Route path="/" element={<Navigate to="/authorization" />} />
 				<Route
 					path="/registration"
 					element={
@@ -30,9 +31,9 @@ export const Routes = () => {
 				<Route
 					path="/teams"
 					element={
-						// <PrivateComponent>
-						<Teams />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<Teams />
+						</PrivateComponent>
 					}
 				/>
 				<Route
@@ -56,6 +57,22 @@ export const Routes = () => {
 					element={
 						// <PrivateComponent>
 						<Team />
+						// </PrivateComponent>
+					}
+				/>
+				<Route
+					path="/players/manage"
+					element={
+						// <PrivateComponent>
+						<ManagePlayer pageVariant="add" />
+						// </PrivateComponent>
+					}
+				/>
+				<Route
+					path="/players/manage/:id"
+					element={
+						// <PrivateComponent>
+						<ManagePlayer pageVariant="edit" />
 						// </PrivateComponent>
 					}
 				/>

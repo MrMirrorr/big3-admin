@@ -112,6 +112,22 @@
 		}
 	}
 
+	&--single {
+		.custom-select {
+			&__control {
+				background-color: var(--color-lightest-grey-1);
+			}
+		}
+
+		&.error {
+			.custom-select {
+				&__control {
+					border-color: var(--color-lightest-red);
+				}
+			}
+		}
+	}
+
 	&--mini {
 		max-width: 88px;
 	}
