@@ -12,6 +12,8 @@ export const Pagination = ({ pageCount, page, handlePageChange }: Props) => {
 		handlePageChange(event.selected + 1);
 	};
 
+	const safePage = Math.min(page - 1, pageCount - 1);
+
 	return (
 		<ReactPaginate
 			className="pagination"
@@ -22,7 +24,7 @@ export const Pagination = ({ pageCount, page, handlePageChange }: Props) => {
 			pageCount={pageCount}
 			previousLabel={<ArrowIcon />}
 			marginPagesDisplayed={1}
-			forcePage={page - 1}
+			forcePage={safePage}
 		/>
 	);
 };
