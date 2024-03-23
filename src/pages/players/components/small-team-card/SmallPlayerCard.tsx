@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { IPlayerResponse } from '../../../../api/dto/IPlayer';
+import { IPlayerTeamNameResponse } from '../../../../api/dto/IPlayer';
 import styles from './SmallPlayerCard.module.scss';
 
 export const SmallPlayerCard = ({
@@ -7,8 +7,8 @@ export const SmallPlayerCard = ({
 	name,
 	number,
 	avatarUrl,
-	team,
-}: IPlayerResponse) => {
+	teamName,
+}: IPlayerTeamNameResponse) => {
 	return (
 		<div className={styles.card}>
 			<Link to={`/players/${id}`}>
@@ -19,7 +19,7 @@ export const SmallPlayerCard = ({
 					<div className={styles.name}>
 						{name} <span>#{number}</span>
 					</div>
-					<div className={styles.description}>{team}</div>
+					<div className={styles.description}>{teamName}</div>
 				</div>
 			</Link>
 		</div>

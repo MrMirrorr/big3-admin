@@ -2,9 +2,14 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { useAppDispatch } from '../../../store/store';
-import { useCreatePlayerMutation, useGetPlayerQuery } from '../../../api/requests/player';
+import {
+	useCreatePlayerMutation,
+	useGetPlayerQuery,
+	useUpdatePlayerMutation,
+} from '../../../api/requests/player';
 import { displayToast } from '../../../modules/ui/uiThunk';
 import { useUploadImage } from './useUploadImagePlayer';
+import { convertDateStringToISO, convertISOToDateString } from '../../../utils';
 
 export interface Inputs {
 	imageFile?: File | null;
@@ -21,11 +26,13 @@ export const usePlayerForm = () => {
 	const { id } = useParams<{ id?: string }>();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const { data: playerData } = useGetPlayerQuery(id ?? `id=${id}`, {
+	const { data: playerData } = useGetPlayerQuery(`id=${id}`, {
 		skip: id === undefined,
 	});
 	const [createPlayer, { isLoading: isCreatePlayerLoading }] =
 		useCreatePlayerMutation();
+	const [updatePlayer, { isLoading: isUpdatePlayerLoading }] =
+		useUpdatePlayerMutation();
 
 	const {
 		register,
@@ -49,7 +56,8 @@ export const usePlayerForm = () => {
 		handleImageUpload,
 	} = useUploadImage(setValue, trigger);
 
-	const isLoading = isUploadImgLoading || isCreatePlayerLoading;
+	const isLoading =
+		isUploadImgLoading || isCreatePlayerLoading || isUpdatePlayerLoading;
 
 	useEffect(() => {
 		if (playerData) {
@@ -59,7 +67,7 @@ export const usePlayerForm = () => {
 			setValue('team', playerData.team);
 			setValue('height', playerData.height);
 			setValue('weight', playerData.weight);
-			setValue('birthday', playerData.birthday);
+			setValue('birthday', convertISOToDateString(playerData.birthday || ''));
 			setValue('number', playerData.number);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,9 +77,7 @@ export const usePlayerForm = () => {
 		try {
 			const imageUrl = await handleImageUpload(data, setError, playerData);
 
-			const userSelectedDate = data.birthday
-				? new Date(data.birthday).toISOString()
-				: '';
+			if (!imageUrl) return;
 
 			const playerFormData = {
 				name: data.name,
@@ -80,20 +86,36 @@ export const usePlayerForm = () => {
 				team: data.team,
 				height: data.height,
 				weight: data.weight,
-				birthday: userSelectedDate,
+				birthday: convertDateStringToISO(data.birthday || ''),
 				avatarUrl: imageUrl,
 			};
 
-			const responsePlayerData = await createPlayer(playerFormData).unwrap();
+			if (!id) {
+				const responsePlayerData = await createPlayer(playerFormData).unwrap();
 
-			dispatch(
-				displayToast('The new player has been successfully created.', {
-					variant: 'success',
-				}),
-			);
-			navigate(`/players/${responsePlayerData.id}`);
+				dispatch(
+					displayToast('The new player has been successfully created.', {
+						variant: 'success',
+					}),
+				);
+				navigate(`/players/${responsePlayerData.id}`);
 
-			console.log('Данные нового игрока', responsePlayerData);
+				console.log('Данные нового игрока', responsePlayerData);
+			} else {
+				const responsePlayerData = await updatePlayer({
+					...playerFormData,
+					id: Number(id),
+				}).unwrap();
+
+				dispatch(
+					displayToast('The new team has been successfully updated.', {
+						variant: 'success',
+					}),
+				);
+				navigate(`/players/${responsePlayerData.id}`);
+
+				console.log('Updated team data', responsePlayerData);
+			}
 		} catch (err: any) {
 			if (err?.originalStatus && err?.originalStatus === 409) {
 				console.log('A player with the specified name already exists.');

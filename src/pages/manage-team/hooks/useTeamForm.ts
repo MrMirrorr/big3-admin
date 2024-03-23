@@ -66,6 +66,8 @@ export const useTeamForm = () => {
 		try {
 			const imageUrl = await handleImageUpload(data, setError, teamData);
 
+			if (!imageUrl) return;
+
 			const teamFormData = {
 				name: data.name,
 				division: data.division,

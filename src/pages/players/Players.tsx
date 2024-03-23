@@ -8,11 +8,13 @@ import {
 } from '../../modules/ui/uiSlice';
 import { displayToast } from '../../modules/ui/uiThunk';
 import { useGetAllPlayersQuery } from '../../api/requests/player';
+import { IPlayerTeamNameResponse } from '../../api/dto/IPlayer';
+import { useGetAllTeamsQuery } from '../../api/requests/team';
 import { AppLayout } from '../../layouts/app-layout/AppLayout';
 import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
+import { ReactComponent as EmptyImg } from '../../assets/icons/empty-players.svg';
 import { CardsList, EmptyHere, PaginationPanel, TopPanel } from '../../components';
 import { SmallPlayerCard } from './components/small-team-card/SmallPlayerCard';
-import { ReactComponent as EmptyImg } from '../../assets/icons/empty-teams.svg';
 
 export const Players = () => {
 	const dispatch = useAppDispatch();
@@ -23,6 +25,7 @@ export const Players = () => {
 	const { data, isLoading, isFetching, isError } = useGetAllPlayersQuery(
 		`Name=${searchValue}&Page=${page}&PageSize=${pageSize}${teamIdsQueryString}`,
 	);
+	const { data: teams } = useGetAllTeamsQuery('');
 
 	const handlePageChange = (selectedPage: number) => {
 		dispatch(setPage(selectedPage));
@@ -39,6 +42,17 @@ export const Players = () => {
 			}),
 		);
 	}
+
+	const playersWithTeamNames: IPlayerTeamNameResponse[] | undefined = data?.data.map(
+		(player) => {
+			const team = teams?.data.find((team) => team.id === player.team);
+			const teamName: string = team ? team.name : 'Unknown Team';
+			return {
+				...player,
+				teamName,
+			};
+		},
+	);
 
 	return (
 		<AppLayout>
@@ -62,13 +76,13 @@ export const Players = () => {
 					</div>
 				) : data?.data.length ? (
 					<CardsList
-						items={data.data}
+						items={playersWithTeamNames}
 						renderItem={(item) => (
 							<SmallPlayerCard key={item?.id} {...item} />
 						)}
 					/>
 				) : (
-					<EmptyHere image={<EmptyImg />} text="Add new teams to continue" />
+					<EmptyHere image={<EmptyImg />} text="Add new players to continue" />
 				)}
 			</ContentLayout>
 		</AppLayout>
