@@ -7,14 +7,14 @@ import {
 } from '../../modules/ui/uiSlice';
 import { displayToast } from '../../modules/ui/uiThunk';
 import { useGetAllTeamsQuery } from '../../api/requests/team';
-import { AppLayout } from '../../layouts/app-layout/AppLayout';
-import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
+import { AppLayout, ContentLayout } from '../../layouts';
 import {
 	CardsList,
 	EmptyHere,
 	PaginationPanel,
 	Preloader,
 	TopPanel,
+	WarningMessage,
 } from '../../components';
 import { SmallTeamCard } from './components/small-team-card/SmallTeamCard';
 import { ReactComponent as EmptyImg } from '../../assets/icons/empty-teams.svg';
@@ -60,9 +60,7 @@ export const Teams = () => {
 				{isLoading || isFetching ? (
 					<Preloader />
 				) : isError ? (
-					<div style={{ color: 'red' }}>
-						Oops. Failed to load data from the server.
-					</div>
+					<WarningMessage message="Oops. Failed to load data from the server." />
 				) : data?.data.length ? (
 					<CardsList
 						items={data.data}

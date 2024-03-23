@@ -1,5 +1,4 @@
-import { AppLayout } from '../../layouts/app-layout/AppLayout';
-import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
+import { AppLayout, ContentLayout } from '../../layouts';
 import { Breadcrumbs } from '../../components';
 import { PlayerForm } from './components/player-form/PlayerForm';
 

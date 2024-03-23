@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from './Breadcrumbs.module.scss';
+import styles from './Breadcrumbs.module.scss';
 
 export interface ICrumb {
 	text: string;
@@ -15,7 +15,7 @@ export const Breadcrumbs = ({ crumbs }: Props) => {
 	const isLastElem = (index: number) => index < crumbs.length - 1;
 
 	return (
-		<div className={styled.breadcrumbs}>
+		<div className={styles.breadcrumbs}>
 			{crumbs.map((crumb, index) => (
 				<React.Fragment key={index}>
 					{isLastElem(index) ? (

@@ -10,8 +10,7 @@ import { displayToast } from '../../modules/ui/uiThunk';
 import { useGetAllPlayersQuery } from '../../api/requests/player';
 import { IPlayerTeamNameResponse } from '../../api/dto/IPlayer';
 import { useGetAllTeamsQuery } from '../../api/requests/team';
-import { AppLayout } from '../../layouts/app-layout/AppLayout';
-import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
+import { AppLayout, ContentLayout } from '../../layouts';
 import { ReactComponent as EmptyImg } from '../../assets/icons/empty-players.svg';
 import {
 	CardsList,
@@ -19,6 +18,7 @@ import {
 	PaginationPanel,
 	Preloader,
 	TopPanel,
+	WarningMessage,
 } from '../../components';
 import { SmallPlayerCard } from './components/small-team-card/SmallPlayerCard';
 
@@ -77,9 +77,7 @@ export const Players = () => {
 				{isLoading || isFetching ? (
 					<Preloader />
 				) : isError ? (
-					<div style={{ color: 'red' }}>
-						Oops. Failed to load data from the server.
-					</div>
+					<WarningMessage message="Oops. Failed to load data from the server." />
 				) : data?.data.length ? (
 					<CardsList
 						items={playersWithTeamNames}

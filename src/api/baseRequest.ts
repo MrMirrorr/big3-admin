@@ -1,5 +1,16 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { FetchArgs, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store/store';
+import { logOut } from '../modules/authorization/authorizationSlice';
+
+const baseQueryWithCheckAuth = async (args: FetchArgs, api: any, extraOptions: any) => {
+	let result = await baseQuery(args, api, extraOptions);
+
+	if (result?.error?.status === 401) {
+		api.dispatch(logOut());
+	}
+
+	return result;
+};
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: '/',
@@ -12,11 +23,10 @@ const baseQuery = fetchBaseQuery({
 	},
 });
 
-// const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
-
 export const api = createApi({
 	reducerPath: 'splitApi',
-	baseQuery: baseQuery,
+	baseQuery: (args, api, extraOptions) =>
+		baseQueryWithCheckAuth(args, api, extraOptions),
 	tagTypes: ['Teams', 'Players'],
 	endpoints: () => ({}),
 });

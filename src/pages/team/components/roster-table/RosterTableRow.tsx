@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { IPlayerResponse } from '../../../../api/dto/IPlayer';
 import { calculateAgeFromDateOfBirth } from '../../../../utils';
 import styles from './RosterTableRow.module.scss';
@@ -7,11 +8,17 @@ interface Props {
 }
 
 export const RosterTableRow = ({ players = [] }: Props) => {
+	const navigate = useNavigate();
+
 	return (
 		<tbody className={styles.body}>
-			{players &&
+			{players && players.length ? (
 				players.map((player) => (
-					<tr className={styles.row} key={player.id}>
+					<tr
+						className={styles.row}
+						key={player.id}
+						onClick={() => navigate(`/players/${player.id}`)}
+					>
 						<td className={styles.number}>
 							{player.number ? player.number : '-'}
 						</td>
@@ -32,7 +39,14 @@ export const RosterTableRow = ({ players = [] }: Props) => {
 						<td>{player.weight}</td>
 						<td>{calculateAgeFromDateOfBirth(player.birthday || '')}</td>
 					</tr>
-				))}
+				))
+			) : (
+				<tr>
+					<td colSpan={5} className={styles.empty}>
+						There are no players on this team yet.
+					</td>
+				</tr>
+			)}
 		</tbody>
 	);
 };

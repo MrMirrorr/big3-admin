@@ -10,3 +10,4 @@ export * from './toast/Toast';
 export * from './top-panel/TopPanel';
 export * from './hoc/PrivateComponent';
 export * from './hoc/WithAuthCheck';
+export * from './warning-message/WarningMessage';

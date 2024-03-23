@@ -41,41 +41,41 @@ export const Routes = () => {
 				<Route
 					path="/teams/:id"
 					element={
-						// <PrivateComponent>
-						<Team />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<Team />
+						</PrivateComponent>
 					}
 				/>
 				<Route
 					path="/teams/manage"
 					element={
-						// <PrivateComponent>
-						<ManageTeam pageVariant="add" />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<ManageTeam pageVariant="add" />
+						</PrivateComponent>
 					}
 				/>
 				<Route
 					path="/teams/manage/:id"
 					element={
-						// <PrivateComponent>
-						<ManageTeam pageVariant="edit" />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<ManageTeam pageVariant="edit" />
+						</PrivateComponent>
 					}
 				/>
 				<Route
 					path="/players"
 					element={
-						// <PrivateComponent>
-						<Players />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<Players />
+						</PrivateComponent>
 					}
 				/>
 				<Route
 					path="/players/:id"
 					element={
-						// <PrivateComponent>
-						<Player />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<Player />
+						</PrivateComponent>
 					}
 				/>
 				<Route
@@ -89,9 +89,9 @@ export const Routes = () => {
 				<Route
 					path="/players/manage/:id"
 					element={
-						// <PrivateComponent>
-						<ManagePlayer pageVariant="edit" />
-						// </PrivateComponent>
+						<PrivateComponent>
+							<ManagePlayer pageVariant="edit" />
+						</PrivateComponent>
 					}
 				/>
 			</ReactRoutes>

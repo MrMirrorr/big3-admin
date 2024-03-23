@@ -1,18 +1,22 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../store/store';
 import { displayToast } from '../../modules/ui/uiThunk';
-import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
-import { AppLayout } from '../../layouts/app-layout/AppLayout';
+import { AppLayout, ContentLayout } from '../../layouts';
 import { useDeletePlayerMutation, useGetPlayerQuery } from '../../api/requests/player';
-import { Preloader } from '../../components';
+import { Preloader, WarningMessage } from '../../components';
 import { BigCardPlayer } from './components/big-card-player/BigCardPlayer';
 
 export const Player = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { id: playerId } = useParams();
-	const { data: player, isLoading, isError } = useGetPlayerQuery(`id=${playerId}`);
+	const {
+		data: player,
+		isLoading: isGetPlayerLoading,
+		isError,
+	} = useGetPlayerQuery(`id=${playerId}`);
 	const [deletePlayer, { isLoading: isDeleteLoading }] = useDeletePlayerMutation();
+	const isLoading = isGetPlayerLoading || isDeleteLoading;
 
 	const editPlayerHandler = (id: number) => {
 		navigate(`/players/manage/${id}`);
@@ -45,9 +49,7 @@ export const Player = () => {
 				{isLoading ? (
 					<Preloader />
 				) : isError ? (
-					<div style={{ color: 'red' }}>
-						Oops. Failed to load data from the server.
-					</div>
+					<WarningMessage message="Oops. Failed to load data from the server." />
 				) : player ? (
 					<BigCardPlayer
 						player={player}
@@ -55,7 +57,9 @@ export const Player = () => {
 						deletePlayerHandler={deletePlayerHandler}
 						isDeleteLoading={isDeleteLoading}
 					/>
-				) : null}
+				) : (
+					<WarningMessage message="No content found." />
+				)}
 			</ContentLayout>
 		</AppLayout>
 	);

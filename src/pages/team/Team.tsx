@@ -1,14 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../store/store';
 import { displayToast } from '../../modules/ui/uiThunk';
-import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
-import { AppLayout } from '../../layouts/app-layout/AppLayout';
+import { AppLayout, ContentLayout } from '../../layouts';
 import {
 	useDeleteTeamMutation,
 	useGetTeamPlayersQuery,
 	useGetTeamQuery,
 } from '../../api/requests/team';
-import { Preloader } from '../../components';
+import { Preloader, WarningMessage } from '../../components';
 import { BigCardTeam } from './components/big-card-team/BigCardTeam';
 import { RosterTable } from './components/roster-table/RosterTable';
 
@@ -16,9 +15,14 @@ export const Team = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { id: teamId } = useParams();
-	const { data: team, isLoading, isError } = useGetTeamQuery(`id=${teamId}`);
+	const {
+		data: team,
+		isLoading: isGetTeamLoading,
+		isError,
+	} = useGetTeamQuery(`id=${teamId}`);
 	const { data: playersObject } = useGetTeamPlayersQuery(`TeamIds=${teamId}`);
 	const [deleteTeam, { isLoading: isDeleteLoading }] = useDeleteTeamMutation();
+	const isLoading = isGetTeamLoading || isDeleteLoading;
 
 	const editTeamHandler = (id: number) => {
 		navigate(`/teams/manage/${id}`);
@@ -51,18 +55,20 @@ export const Team = () => {
 				{isLoading ? (
 					<Preloader />
 				) : isError ? (
-					<div style={{ color: 'red' }}>
-						Oops. Failed to load data from the server.
-					</div>
+					<WarningMessage message="Oops. Failed to load data from the server." />
 				) : team ? (
-					<BigCardTeam
-						team={team}
-						editTeamHandler={editTeamHandler}
-						deleteTeamHandler={deleteTeamHandler}
-						isDeleteLoading={isDeleteLoading}
-					/>
-				) : null}
-				<RosterTable players={playersObject?.data} />
+					<>
+						<BigCardTeam
+							team={team}
+							editTeamHandler={editTeamHandler}
+							deleteTeamHandler={deleteTeamHandler}
+							isDeleteLoading={isDeleteLoading}
+						/>
+						<RosterTable players={playersObject?.data} />
+					</>
+				) : (
+					<WarningMessage message="No content found." />
+				)}
 			</ContentLayout>
 		</AppLayout>
 	);
