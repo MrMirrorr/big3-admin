@@ -1,6 +1,7 @@
 import { registrationFormValidation } from './registrationFormValidation';
 import { useRegForm } from '../../hooks/useRegForm';
 import { Button, Checkbox, Input, Link } from '../../../../ui';
+import { Preloader } from '../../../../components';
 import styles from './RegistrationForm.module.scss';
 
 interface Props {
@@ -11,7 +12,9 @@ export const RegistrationForm = ({ title }: Props) => {
 	const { register, handleSubmit, getValues, onSubmit, isLoading, errors } =
 		useRegForm();
 
-	return (
+	return isLoading ? (
+		<Preloader />
+	) : (
 		<div className={styles.formBlock}>
 			<h1 className={styles.title}>{title}</h1>
 			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

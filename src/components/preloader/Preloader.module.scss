@@ -1,0 +1,19 @@
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+		opacity: 0.2;
+	}
+	50% {
+		opacity: 0.8;
+	}
+	to {
+		transform: rotate(360deg);
+		opacity: 0.2;
+	}
+}
+
+.preloader {
+	width: 100%;
+	height: auto;
+	animation: rotate 3s linear infinite;
+}

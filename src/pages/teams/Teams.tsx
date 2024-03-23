@@ -9,7 +9,13 @@ import { displayToast } from '../../modules/ui/uiThunk';
 import { useGetAllTeamsQuery } from '../../api/requests/team';
 import { AppLayout } from '../../layouts/app-layout/AppLayout';
 import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
-import { CardsList, EmptyHere, PaginationPanel, TopPanel } from '../../components';
+import {
+	CardsList,
+	EmptyHere,
+	PaginationPanel,
+	Preloader,
+	TopPanel,
+} from '../../components';
 import { SmallTeamCard } from './components/small-team-card/SmallTeamCard';
 import { ReactComponent as EmptyImg } from '../../assets/icons/empty-teams.svg';
 
@@ -52,7 +58,7 @@ export const Teams = () => {
 				}
 			>
 				{isLoading || isFetching ? (
-					<div>Loading ...</div>
+					<Preloader />
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.

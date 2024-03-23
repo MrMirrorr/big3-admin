@@ -5,6 +5,7 @@ export * from './header/Header';
 export * from './image-upload/ImageUpload';
 export * from './mobile-sidebar/MobileSidebar';
 export * from './pagination-panel/PaginationPanel';
+export * from './preloader/Preloader';
 export * from './toast/Toast';
 export * from './top-panel/TopPanel';
 export * from './hoc/PrivateComponent';

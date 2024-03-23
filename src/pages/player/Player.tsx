@@ -4,6 +4,7 @@ import { displayToast } from '../../modules/ui/uiThunk';
 import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
 import { AppLayout } from '../../layouts/app-layout/AppLayout';
 import { useDeletePlayerMutation, useGetPlayerQuery } from '../../api/requests/player';
+import { Preloader } from '../../components';
 import { BigCardPlayer } from './components/big-card-player/BigCardPlayer';
 
 export const Player = () => {
@@ -42,7 +43,7 @@ export const Player = () => {
 		<AppLayout>
 			<ContentLayout>
 				{isLoading ? (
-					<div>Loading ...</div>
+					<Preloader />
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.

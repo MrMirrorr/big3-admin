@@ -22,7 +22,7 @@ export const useTeamForm = () => {
 	const { id } = useParams<{ id?: string }>();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const { data: teamData } = useGetTeamQuery(`id=${id}`, {
+	const { data: teamData, isLoading: isGetTeamLoading } = useGetTeamQuery(`id=${id}`, {
 		skip: id === undefined,
 	});
 	const [createTeam, { isLoading: isCreateTeamLoading }] = useCreateTeamMutation();
@@ -49,7 +49,11 @@ export const useTeamForm = () => {
 		handleImageUpload,
 	} = useUploadImageTeam(setValue, trigger);
 
-	const isLoading = isUploadImgLoading || isCreateTeamLoading || isUpdateTeamLoading;
+	const isLoading =
+		isUploadImgLoading ||
+		isCreateTeamLoading ||
+		isUpdateTeamLoading ||
+		isGetTeamLoading;
 
 	useEffect(() => {
 		if (teamData) {

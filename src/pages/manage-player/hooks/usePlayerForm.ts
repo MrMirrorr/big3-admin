@@ -26,9 +26,12 @@ export const usePlayerForm = () => {
 	const { id } = useParams<{ id?: string }>();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const { data: playerData } = useGetPlayerQuery(`id=${id}`, {
-		skip: id === undefined,
-	});
+	const { data: playerData, isLoading: isGetPlayerLoading } = useGetPlayerQuery(
+		`id=${id}`,
+		{
+			skip: id === undefined,
+		},
+	);
 	const [createPlayer, { isLoading: isCreatePlayerLoading }] =
 		useCreatePlayerMutation();
 	const [updatePlayer, { isLoading: isUpdatePlayerLoading }] =
@@ -57,7 +60,10 @@ export const usePlayerForm = () => {
 	} = useUploadImage(setValue, trigger);
 
 	const isLoading =
-		isUploadImgLoading || isCreatePlayerLoading || isUpdatePlayerLoading;
+		isUploadImgLoading ||
+		isCreatePlayerLoading ||
+		isUpdatePlayerLoading ||
+		isGetPlayerLoading;
 
 	useEffect(() => {
 		if (playerData) {

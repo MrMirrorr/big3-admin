@@ -8,6 +8,7 @@ import {
 	useGetTeamPlayersQuery,
 	useGetTeamQuery,
 } from '../../api/requests/team';
+import { Preloader } from '../../components';
 import { BigCardTeam } from './components/big-card-team/BigCardTeam';
 import { RosterTable } from './components/roster-table/RosterTable';
 
@@ -48,7 +49,7 @@ export const Team = () => {
 		<AppLayout>
 			<ContentLayout>
 				{isLoading ? (
-					<div>Loading ...</div>
+					<Preloader />
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.

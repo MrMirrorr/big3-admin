@@ -3,7 +3,7 @@ import { useGetPositionsQuery } from '../../../../api/requests/player';
 import { useGetAllTeamsQuery } from '../../../../api/requests/team';
 import { teamFormValidation } from './playerFormValidation';
 import { usePlayerForm } from '../../hooks/usePlayerForm';
-import { ImageUpload } from '../../../../components';
+import { ImageUpload, Preloader } from '../../../../components';
 import { Button, Input } from '../../../../ui';
 import { ControlledSingleSelect } from '../controlled-single-select/ControlledSingleSelect';
 import { IOption } from '../../../../ui/sharedTypes';
@@ -31,7 +31,9 @@ export const PlayerForm = () => {
 		control,
 	} = usePlayerForm();
 
-	return (
+	return isLoading ? (
+		<Preloader />
+	) : (
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.left}>
 				<ImageUpload

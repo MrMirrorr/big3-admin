@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ImageUpload } from '../../../../components';
+import { ImageUpload, Preloader } from '../../../../components';
 import { Button, Input } from '../../../../ui';
 import { teamFormValidation } from './teamFormValidation';
 import { useTeamForm } from '../../hooks/useTeamForm';
@@ -17,7 +17,9 @@ export const TeamForm = () => {
 		previewUrl,
 	} = useTeamForm();
 
-	return (
+	return isLoading ? (
+		<Preloader />
+	) : (
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.left}>
 				<ImageUpload

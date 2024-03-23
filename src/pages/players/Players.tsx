@@ -13,7 +13,13 @@ import { useGetAllTeamsQuery } from '../../api/requests/team';
 import { AppLayout } from '../../layouts/app-layout/AppLayout';
 import { ContentLayout } from '../../layouts/content-layout/ContentLayout';
 import { ReactComponent as EmptyImg } from '../../assets/icons/empty-players.svg';
-import { CardsList, EmptyHere, PaginationPanel, TopPanel } from '../../components';
+import {
+	CardsList,
+	EmptyHere,
+	PaginationPanel,
+	Preloader,
+	TopPanel,
+} from '../../components';
 import { SmallPlayerCard } from './components/small-team-card/SmallPlayerCard';
 
 export const Players = () => {
@@ -69,7 +75,7 @@ export const Players = () => {
 				}
 			>
 				{isLoading || isFetching ? (
-					<div>Loading ...</div>
+					<Preloader />
 				) : isError ? (
 					<div style={{ color: 'red' }}>
 						Oops. Failed to load data from the server.

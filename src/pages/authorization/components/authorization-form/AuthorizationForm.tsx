@@ -1,6 +1,7 @@
 import { authorizationFormValidation } from './authorizationFormValidation';
 import { useAuthForm } from '../../hooks/useAuthForm';
 import { Button, Input, Link } from '../../../../ui';
+import { Preloader } from '../../../../components';
 import styles from './AuthorizationForm.module.scss';
 
 interface Props {
@@ -10,7 +11,9 @@ interface Props {
 export const AuthorizationForm = ({ title }: Props) => {
 	const { register, handleSubmit, onSubmit, isLoading, errors } = useAuthForm();
 
-	return (
+	return isLoading ? (
+		<Preloader />
+	) : (
 		<div className={styles.formBlock}>
 			<h1 className={styles.title}>{title}</h1>
 			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
