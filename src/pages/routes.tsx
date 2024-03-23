@@ -7,6 +7,7 @@ import { ManageTeam } from './manage-team/ManageTeam';
 import { Team } from './team/Team';
 import { Players } from './players/Players';
 import { ManagePlayer } from './manage-player/ManagePlayer';
+import { Player } from './player/Player';
 
 export const Routes = () => {
 	return (
@@ -38,6 +39,14 @@ export const Routes = () => {
 					}
 				/>
 				<Route
+					path="/teams/:id"
+					element={
+						// <PrivateComponent>
+						<Team />
+						// </PrivateComponent>
+					}
+				/>
+				<Route
 					path="/teams/manage"
 					element={
 						// <PrivateComponent>
@@ -54,14 +63,6 @@ export const Routes = () => {
 					}
 				/>
 				<Route
-					path="/teams/:id"
-					element={
-						// <PrivateComponent>
-						<Team />
-						// </PrivateComponent>
-					}
-				/>
-				<Route
 					path="/players"
 					element={
 						// <PrivateComponent>
@@ -70,11 +71,19 @@ export const Routes = () => {
 					}
 				/>
 				<Route
-					path="/players/manage"
+					path="/players/:id"
 					element={
 						// <PrivateComponent>
-						<ManagePlayer pageVariant="add" />
+						<Player />
 						// </PrivateComponent>
+					}
+				/>
+				<Route
+					path="/players/manage"
+					element={
+						<PrivateComponent>
+							<ManagePlayer pageVariant="add" />
+						</PrivateComponent>
 					}
 				/>
 				<Route

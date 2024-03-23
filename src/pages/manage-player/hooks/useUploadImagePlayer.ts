@@ -3,7 +3,7 @@ import { UseFormSetError, UseFormSetValue, UseFormTrigger } from 'react-hook-for
 import { useAppDispatch } from '../../../store/store';
 import { useUploadImageMutation } from '../../../api/requests/image';
 import { displayToast } from '../../../modules/ui/uiThunk';
-import { prepareImageFormData } from '../../../utils/prepareImageFormData';
+import { prepareImageFormData } from '../../../utils';
 import { IPlayerTeamNameResponse } from '../../../api/dto/IPlayer';
 import { Inputs } from './usePlayerForm';
 

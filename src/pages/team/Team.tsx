@@ -8,7 +8,7 @@ import {
 	useGetTeamPlayersQuery,
 	useGetTeamQuery,
 } from '../../api/requests/team';
-import { BigCardTeam } from '../../components';
+import { BigCardTeam } from './components/big-card-team/BigCardTeam';
 import { RosterTable } from './components/roster-table/RosterTable';
 
 export const Team = () => {

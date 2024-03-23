@@ -13,6 +13,10 @@ export const playerApi = api.injectEndpoints({
 			query: (params) => `api/Player/GetPlayers?${params}`,
 			providesTags: ['Players'],
 		}),
+		getPositions: build.query<IPositionsResponse, void>({
+			query: () => `api/Player/GetPositions`,
+			providesTags: ['Players'],
+		}),
 		getPlayer: build.query<IPlayerTeamNameResponse, string>({
 			query: (params) => `api/Player/Get?${params}`,
 			providesTags: ['Players'],
@@ -25,16 +29,29 @@ export const playerApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ['Players'],
 		}),
-		getPositions: build.query<IPositionsResponse, void>({
-			query: () => `api/Player/GetPositions`,
-			providesTags: ['Players'],
+		updatePlayer: build.mutation<IPlayerResponse, IPlayerResponse>({
+			query: (formData) => ({
+				url: 'api/Player/Update',
+				method: 'PUT',
+				body: formData,
+			}),
+			invalidatesTags: ['Players'],
+		}),
+		deletePlayer: build.mutation<IPlayerResponse, number>({
+			query: (id) => ({
+				url: `api/Player/Delete?id=${id}`,
+				method: 'DELETE',
+			}),
+			invalidatesTags: ['Players'],
 		}),
 	}),
 });
 
 export const {
 	useCreatePlayerMutation,
+	useUpdatePlayerMutation,
 	useGetAllPlayersQuery,
 	useGetPlayerQuery,
 	useGetPositionsQuery,
+	useDeletePlayerMutation,
 } = playerApi;

@@ -1,5 +1,3 @@
-export * from '../pages/team/components/big-card-team/BigCardTeam';
-export * from './big-card-player/BigCardPlayer';
 export * from './breadcrumbs/Breadcrumbs';
 export * from './cards-list/CardsList';
 export * from './empty-here/EmptyHere';

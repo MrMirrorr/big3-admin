@@ -1,5 +1,5 @@
 import { IPlayerResponse } from '../../../../api/dto/IPlayer';
-import { calculateAgeFromDateOfBirth } from '../../../../utils/calculateAgeFromDateOfBirth';
+import { calculateAgeFromDateOfBirth } from '../../../../utils';
 import styles from './RosterTableRow.module.scss';
 
 interface Props {
