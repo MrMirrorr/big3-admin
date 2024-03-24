@@ -7,6 +7,7 @@ import {
 	useGetTeamPlayersQuery,
 	useGetTeamQuery,
 } from '../../api/requests/team';
+import { useDialog } from '../../contexts/DialogContext';
 import { Preloader, WarningMessage } from '../../components';
 import { BigCardTeam } from './components/big-card-team/BigCardTeam';
 import { RosterTable } from './components/roster-table/RosterTable';
@@ -15,6 +16,7 @@ export const Team = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { id: teamId } = useParams();
+	const { openDialog } = useDialog();
 	const {
 		data: team,
 		isLoading: isGetTeamLoading,
@@ -28,25 +30,31 @@ export const Team = () => {
 		navigate(`/teams/manage/${id}`);
 	};
 
-	const deleteTeamHandler = async (id: number) => {
-		try {
-			const deletedTeamDataResponse = await deleteTeam(id).unwrap();
-			dispatch(
-				displayToast('The team has been successfully deleted.', {
-					variant: 'success',
-				}),
-			);
-			navigate('/teams');
+	const deleteTeamHandler = (id: number) => {
+		openDialog({
+			title: 'Confirm action',
+			text: 'Remove a team?',
+			onConfirm: async () => {
+				try {
+					const deletedTeamDataResponse = await deleteTeam(id).unwrap();
+					dispatch(
+						displayToast('The team has been successfully deleted.', {
+							variant: 'success',
+						}),
+					);
+					navigate('/teams');
 
-			console.log('Deleted team data', deletedTeamDataResponse);
-		} catch (err) {
-			console.log('Unknown delete team error', err);
-			dispatch(
-				displayToast('Unknown delete team error.', {
-					variant: 'error',
-				}),
-			);
-		}
+					console.log('Deleted team data', deletedTeamDataResponse);
+				} catch (err) {
+					console.log('Unknown delete team error', err);
+					dispatch(
+						displayToast('Unknown delete team error.', {
+							variant: 'error',
+						}),
+					);
+				}
+			},
+		});
 	};
 
 	return (

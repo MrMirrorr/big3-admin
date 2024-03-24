@@ -26,7 +26,7 @@ export const playerApi = api.injectEndpoints({
 				method: 'POST',
 				body: formData,
 			}),
-			invalidatesTags: ['Players'],
+			invalidatesTags: ['Players', 'Teams'],
 		}),
 		updatePlayer: build.mutation<IPlayerResponse, IPlayerResponse>({
 			query: (formData) => ({
@@ -34,14 +34,14 @@ export const playerApi = api.injectEndpoints({
 				method: 'PUT',
 				body: formData,
 			}),
-			invalidatesTags: ['Players'],
+			invalidatesTags: ['Players', 'Teams'],
 		}),
 		deletePlayer: build.mutation<IPlayerResponse, number>({
 			query: (id) => ({
 				url: `api/Player/Delete?id=${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['Players'],
+			invalidatesTags: ['Players', 'Teams'],
 		}),
 	}),
 });

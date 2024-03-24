@@ -37,7 +37,7 @@ export const teamApi = api.injectEndpoints({
 		}),
 		getTeamPlayers: build.query<IPlayerPageResult, string>({
 			query: (params) => `api/Player/GetPlayers?${params}`,
-			providesTags: ['Teams'],
+			providesTags: ['Teams', 'Players'],
 		}),
 	}),
 });

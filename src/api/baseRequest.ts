@@ -1,11 +1,23 @@
-import { FetchArgs, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+	BaseQueryFn,
+	FetchArgs,
+	FetchBaseQueryError,
+	createApi,
+	fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store/store';
 import { logOut } from '../modules/authorization/authorizationSlice';
+import { showToast } from '../modules/ui/uiSlice';
 
-const baseQueryWithCheckAuth = async (args: FetchArgs, api: any, extraOptions: any) => {
+const baseQueryWithCheckAuth: BaseQueryFn<
+	string | FetchArgs,
+	unknown,
+	FetchBaseQueryError
+> = async (args, api, extraOptions) => {
 	let result = await baseQuery(args, api, extraOptions);
 
-	if (result?.error?.status === 401) {
+	if (result.error && result.error.status === 401) {
+		api.dispatch(showToast({ message: 'Please log in', variant: 'success' }));
 		api.dispatch(logOut());
 	}
 

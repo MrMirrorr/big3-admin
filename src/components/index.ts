@@ -1,5 +1,6 @@
 export * from './breadcrumbs/Breadcrumbs';
 export * from './cards-list/CardsList';
+export * from './dialog/Dialog';
 export * from './empty-here/EmptyHere';
 export * from './header/Header';
 export * from './image-upload/ImageUpload';

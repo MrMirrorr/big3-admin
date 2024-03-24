@@ -4,13 +4,21 @@ import { displayToast } from '../../modules/ui/uiThunk';
 import { NavMenu } from './components/nav-menu/NavMenu';
 import { ReactComponent as SignOutIcon } from './assets/sign-out.svg';
 import styles from './Sidebar.module.scss';
+import { useDialog } from '../../contexts/DialogContext';
 
 export const Sidebar = () => {
 	const dispatch = useAppDispatch();
+	const { openDialog } = useDialog();
 
 	const logOutHandler = () => {
-		dispatch(logOut());
-		dispatch(displayToast('Successful logout', { variant: 'success' }));
+		openDialog({
+			title: 'Confirm action',
+			text: 'Are you sure you want to log out of your account?',
+			onConfirm: () => {
+				dispatch(logOut());
+				dispatch(displayToast('Successful logout', { variant: 'success' }));
+			},
+		});
 	};
 
 	return (
