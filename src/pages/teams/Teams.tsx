@@ -17,7 +17,7 @@ import {
 	WarningMessage,
 } from '../../components';
 import { SmallTeamCard } from './components/small-team-card/SmallTeamCard';
-import { ReactComponent as EmptyImg } from '../../assets/icons/empty-teams.svg';
+import { ReactComponent as EmptyImg } from './assets/empty-teams.svg';
 
 export const Teams = () => {
 	const dispatch = useAppDispatch();

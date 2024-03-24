@@ -7,7 +7,7 @@ interface Props {
 	children: React.ReactElement;
 }
 
-export const PrivateComponent = ({ children }: Props) => {
+export const PrivateRoute = ({ children }: Props) => {
 	const isAuthenticated = useAppSelector(selectIsAuthUser);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +20,7 @@ export const PrivateComponent = ({ children }: Props) => {
 	}
 
 	if (!isAuthenticated) {
-		return <Navigate to="/authorization" replace />;
+		return <Navigate to="/auth/authorization" replace />;
 	}
 
 	return children;

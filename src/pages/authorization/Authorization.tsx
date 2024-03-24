@@ -1,6 +1,6 @@
 import { AuthLayout, MainContainer } from '../../layouts';
 import { AuthorizationForm } from './components/authorization-form/AuthorizationForm';
-import { ReactComponent as Img } from '../../assets/icons/sign-in.svg';
+import { ReactComponent as Img } from './assets/sign-in.svg';
 
 export const Authorization = () => {
 	return (

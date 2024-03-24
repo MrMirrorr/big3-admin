@@ -1,5 +1,5 @@
-import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
-import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg';
+import { ReactComponent as DeleteIcon } from './assets/delete.svg';
+import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { Breadcrumbs, ICrumb } from '../breadcrumbs/Breadcrumbs';
 import styles from './BigCardHeader.module.scss';
 

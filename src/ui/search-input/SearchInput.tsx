@@ -1,4 +1,4 @@
-import { ReactComponent as Search } from '../../assets/icons/search.svg';
+import { ReactComponent as Search } from './search.svg';
 import styles from './SearchInput.module.scss';
 
 interface Props {

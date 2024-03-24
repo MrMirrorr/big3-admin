@@ -7,3 +7,15 @@
 	padding: 0;
 	margin: 0;
 }
+
+.menu {
+	&.isMobile {
+		margin-top: 24px;
+		flex-grow: 1;
+
+		.menuList {
+			align-items: flex-start;
+			gap: 24px;
+		}
+	}
+}

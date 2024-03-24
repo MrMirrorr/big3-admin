@@ -9,7 +9,7 @@
 		&:checked + label::before {
 			border-color: var(--color-red);
 			background-color: var(--color-red);
-			background-image: url('../../assets/icons/check.svg');
+			background-image: url('./check.svg');
 		}
 
 		&:not(:disabled):not(:checked) + label:hover::before {

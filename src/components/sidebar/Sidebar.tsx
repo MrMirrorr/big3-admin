@@ -1,35 +1,15 @@
-import { useAppDispatch } from '../../store/store';
-import { logOut } from '../../modules/authorization/authorizationSlice';
-import { displayToast } from '../../modules/ui/uiThunk';
-import { NavMenu } from './components/nav-menu/NavMenu';
-import { ReactComponent as SignOutIcon } from './assets/sign-out.svg';
+import { useLogOut } from '../../hooks';
+import { NavMenu } from '../nav-menu/NavMenu';
+import { SignOut } from '../sign-out/SignOut';
 import styles from './Sidebar.module.scss';
-import { useDialog } from '../../contexts/DialogContext';
 
 export const Sidebar = () => {
-	const dispatch = useAppDispatch();
-	const { openDialog } = useDialog();
-
-	const logOutHandler = () => {
-		openDialog({
-			title: 'Confirm action',
-			text: 'Are you sure you want to log out of your account?',
-			onConfirm: () => {
-				dispatch(logOut());
-				dispatch(displayToast('Successful logout', { variant: 'success' }));
-			},
-		});
-	};
+	const { logOutHandler } = useLogOut();
 
 	return (
 		<div className={styles.sidebar}>
 			<NavMenu />
-			<div className={styles.signOut} onClick={logOutHandler}>
-				<div className={styles.signOutIcon}>
-					<SignOutIcon />
-				</div>
-				<div className={styles.signOutText}>Sign out</div>
-			</div>
+			<SignOut logOutHandler={logOutHandler} />
 		</div>
 	);
 };

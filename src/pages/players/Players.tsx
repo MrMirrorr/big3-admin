@@ -11,7 +11,7 @@ import { useGetAllPlayersQuery } from '../../api/requests/player';
 import { IPlayerTeamNameResponse } from '../../api/dto/IPlayer';
 import { useGetAllTeamsQuery } from '../../api/requests/team';
 import { AppLayout, ContentLayout } from '../../layouts';
-import { ReactComponent as EmptyImg } from '../../assets/icons/empty-players.svg';
+import { ReactComponent as EmptyImg } from './assets/empty-players.svg';
 import {
 	CardsList,
 	EmptyHere,

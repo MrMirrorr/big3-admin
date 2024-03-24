@@ -9,6 +9,6 @@ export * from './pagination-panel/PaginationPanel';
 export * from './preloader/Preloader';
 export * from './toast/Toast';
 export * from './top-panel/TopPanel';
-export * from './hoc/PrivateComponent';
+export * from './hoc/PrivateRoute';
 export * from './hoc/WithAuthCheck';
 export * from './warning-message/WarningMessage';

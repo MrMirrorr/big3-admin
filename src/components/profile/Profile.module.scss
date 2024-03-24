@@ -1,0 +1,36 @@
+@import '/src/styles/mixins.scss';
+
+.profile {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	color: var(--color-dark-grey);
+
+	@include mobile {
+		display: none;
+	}
+
+	&.isMobile {
+		padding: 16px;
+		display: flex;
+		flex-direction: row;
+		gap: 8px;
+		border-bottom: 1px solid var(--color-light-grey);
+
+		.name {
+			order: 2;
+		}
+
+		.icon {
+			order: 1;
+			flex-grow: 0;
+			display: flex;
+			align-items: center;
+
+			svg {
+				width: 48px;
+				height: 48px;
+			}
+		}
+	}
+}

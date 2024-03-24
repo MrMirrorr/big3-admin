@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { ReactComponent as AddPhotoIcon } from '../../assets/icons/add_a_photo.svg';
+import { ReactComponent as AddPhotoIcon } from './add_a_photo.svg';
 import styles from './ImageUpload.module.scss';
 
 interface Props {

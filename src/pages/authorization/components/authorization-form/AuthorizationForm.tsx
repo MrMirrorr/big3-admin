@@ -37,7 +37,7 @@ export const AuthorizationForm = ({ title }: Props) => {
 					Sign In
 				</Button>
 				<div className={styles.message}>
-					Not a member yet? <Link to="/registration">Sign up</Link>
+					Not a member yet? <Link to="/auth/registration">Sign up</Link>
 				</div>
 			</form>
 		</div>

@@ -1,5 +1,5 @@
 import { useAuthInitialization } from './hooks';
-import { Routes } from './pages/routes';
+import { Routes } from './pages/Routes';
 import { Dialog, Toast } from './components';
 
 export const App = () => {

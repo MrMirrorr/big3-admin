@@ -67,7 +67,7 @@ export const RegistrationForm = ({ title }: Props) => {
 					Sign Up
 				</Button>
 				<div className={styles.message}>
-					Already a member? <Link to="/authorization">Sign in</Link>
+					Already a member? <Link to="/auth/authorization">Sign in</Link>
 				</div>
 			</form>
 		</div>

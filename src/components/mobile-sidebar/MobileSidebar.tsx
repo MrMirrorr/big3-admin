@@ -1,6 +1,10 @@
 import { closeSidebar } from '../../modules/ui/uiSlice';
-import { useAppDispatch } from '../../store/store';
-import { useBodyScrollLock } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useBodyScrollLock, useLogOut } from '../../hooks';
+import { NavMenu } from '../nav-menu/NavMenu';
+import { Profile } from '../profile/Profile';
+import { selectCurrentUser } from '../../modules/authorization/authorizationSlice';
+import { SignOut } from '../sign-out/SignOut';
 import cn from 'classnames';
 import styles from './MobileSidebar.module.scss';
 
@@ -9,9 +13,10 @@ interface Props {
 }
 
 export const MobileSidebar = ({ isOpen }: Props) => {
-	const dispatch = useAppDispatch();
-
 	useBodyScrollLock(isOpen);
+	const dispatch = useAppDispatch();
+	const { name } = useAppSelector(selectCurrentUser);
+	const { logOutHandler } = useLogOut();
 
 	const sidebarClasses = cn(styles.sidebar, {
 		[styles.open]: isOpen,
@@ -25,7 +30,11 @@ export const MobileSidebar = ({ isOpen }: Props) => {
 					onClick={() => dispatch(closeSidebar())}
 				></div>
 			)}
-			<div className={sidebarClasses}>MobileSidebar</div>
+			<div className={sidebarClasses}>
+				<Profile name={name} isMobile />
+				<NavMenu isMobile />
+				<SignOut logOutHandler={logOutHandler} isMobile />
+			</div>
 		</>
 	);
 };

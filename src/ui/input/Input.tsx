@@ -1,6 +1,6 @@
 import { forwardRef, useState } from 'react';
-import { ReactComponent as Eye } from '../../assets/icons/eye.svg';
-import { ReactComponent as EyeOff } from '../../assets/icons/close_eye.svg';
+import { ReactComponent as Eye } from './assets/eye.svg';
+import { ReactComponent as EyeOff } from './assets/close_eye.svg';
 import cn from 'classnames';
 import styles from './Input.module.scss';
 

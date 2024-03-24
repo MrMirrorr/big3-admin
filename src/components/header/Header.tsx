@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { selectCurrentUser } from '../../modules/authorization/authorizationSlice';
 import { closeSidebar, openSidebar, selectSidebar } from '../../modules/ui/uiSlice';
 import { Logo } from './logo/Logo';
-import { Profile } from './profile/Profile';
+import { Profile } from '../profile/Profile';
 import { ReactComponent as BurgerIcon } from './assets/burger.svg';
 import styles from './Header.module.scss';
 
