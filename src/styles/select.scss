@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .select-wrapper {
 	position: relative;
 	max-width: 366px;
@@ -30,10 +32,6 @@
 			padding-left: 12px;
 			flex-wrap: nowrap;
 			overflow-x: hidden;
-
-			div {
-				flex-shrink: 0;
-			}
 		}
 
 		&__control {
@@ -99,8 +97,13 @@
 		}
 
 		&__option {
+			border-bottom: 1px solid var(--color-lightest-grey);
 			transition: all 0.1s ease-in-out;
 			cursor: pointer;
+
+			&:last-child {
+				border-bottom: none;
+			}
 
 			&--is-focused {
 				color: var(--color-white);
@@ -135,6 +138,43 @@
 
 	&--mini {
 		max-width: 88px;
+
+		@include mobile {
+			max-width: 60px;
+			min-width: 60px;
+		}
+
+		.custom-select {
+			&__control {
+				@include mobile {
+					height: 28px;
+					min-height: 28px;
+				}
+			}
+
+			&__value-container {
+				@include mobile {
+					padding: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 15px;
+					line-height: 1;
+				}
+			}
+
+			&__single-value {
+				@include mobile {
+					margin: 0;
+				}
+			}
+
+			&__indicator {
+				@include mobile {
+					padding: 1px;
+				}
+			}
+		}
 	}
 }
 

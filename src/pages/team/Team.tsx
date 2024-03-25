@@ -22,7 +22,8 @@ export const Team = () => {
 		isLoading: isGetTeamLoading,
 		isError,
 	} = useGetTeamQuery(`id=${teamId}`);
-	const { data: playersObject } = useGetTeamPlayersQuery(`TeamIds=${teamId}`);
+	const { data: playersObject, isLoading: isGetTeamPlayersLoading } =
+		useGetTeamPlayersQuery(`TeamIds=${teamId}`);
 	const [deleteTeam, { isLoading: isDeleteLoading }] = useDeleteTeamMutation();
 	const isLoading = isGetTeamLoading || isDeleteLoading;
 
@@ -59,7 +60,7 @@ export const Team = () => {
 
 	return (
 		<AppLayout>
-			<ContentLayout>
+			<ContentLayout isNoPaddingX>
 				{isLoading ? (
 					<Preloader />
 				) : isError ? (
@@ -72,7 +73,10 @@ export const Team = () => {
 							deleteTeamHandler={deleteTeamHandler}
 							isDeleteLoading={isDeleteLoading}
 						/>
-						<RosterTable players={playersObject?.data} />
+						<RosterTable
+							players={playersObject?.data}
+							isLoading={isGetTeamPlayersLoading}
+						/>
 					</>
 				) : (
 					<WarningMessage message="No content found." />

@@ -1,9 +1,16 @@
+@import '/src/styles/mixins.scss';
+
 .pagination {
 	display: flex;
 	gap: 16px;
+	margin: 0;
 	padding: 0;
 	list-style-type: none;
 	user-select: none;
+
+	@include mobile {
+		gap: 8px;
+	}
 
 	li {
 		a {
@@ -12,11 +19,19 @@
 			align-items: center;
 			width: 40px;
 			height: 40px;
+			line-height: 1;
 			color: var(--color-grey);
 			border-radius: 4px;
 			overflow: hidden;
 			cursor: pointer;
 			transition: background-color 0.2s ease-in-out;
+
+			@include mobile {
+				width: 28px;
+				height: 28px;
+				font-size: 15px;
+				line-height: 1;
+			}
 
 			&:hover {
 				background-color: var(--color-lightest-grey);

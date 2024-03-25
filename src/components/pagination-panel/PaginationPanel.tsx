@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Pagination } from './pagination/Pagination';
 import { SelectPageSize } from './select-page-size/SelectPageSize';
+import styles from './PaginationPanel.module.scss';
 
 interface Props {
 	totalCount?: number;
@@ -31,7 +32,7 @@ export const PaginationPanel = ({
 	}, [pageSize]);
 
 	return (
-		<>
+		<div className={styles.paginationPanel}>
 			<Pagination
 				pageCount={pageCount}
 				page={page}
@@ -41,6 +42,6 @@ export const PaginationPanel = ({
 				pageSize={pageSize}
 				handleChangePageCount={handleChangePageCount}
 			/>
-		</>
+		</div>
 	);
 };

@@ -1,6 +1,5 @@
-import { ReactComponent as DeleteIcon } from './assets/delete.svg';
-import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { Breadcrumbs, ICrumb } from '../breadcrumbs/Breadcrumbs';
+import { BigCardHeaderControls } from './BigCardHeaderControls';
 import styles from './BigCardHeader.module.scss';
 
 interface Props {
@@ -21,22 +20,11 @@ export const BigCardHeader = ({
 	return (
 		<div className={styles.controlPanel}>
 			<Breadcrumbs crumbs={crumbs} />
-			<div className={styles.controls}>
-				<button
-					className={styles.editBtn}
-					onClick={() => onEditHandler(id)}
-					disabled={isLoading}
-				>
-					<EditIcon />
-				</button>
-				<button
-					className={styles.deleteBtn}
-					onClick={() => onDeleteHandler(id)}
-					disabled={isLoading}
-				>
-					<DeleteIcon />
-				</button>
-			</div>
+			<BigCardHeaderControls
+				onEditHandler={() => onEditHandler(id)}
+				onDeleteHandler={() => onDeleteHandler(id)}
+				isLoading={isLoading}
+			/>
 		</div>
 	);
 };

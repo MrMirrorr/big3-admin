@@ -6,15 +6,16 @@ import styles from './RosterTable.module.scss';
 
 interface Props {
 	players?: IPlayerResponse[];
+	isLoading: boolean;
 }
 
-export const RosterTable = ({ players }: Props) => {
+export const RosterTable = ({ players, isLoading }: Props) => {
 	return (
 		<>
 			<RosterTableTitle title="Roster" />
 			<table className={styles.table}>
 				<RosterTableHead />
-				<RosterTableRow players={players} />
+				<RosterTableRow players={players} isLoading={isLoading} />
 			</table>
 		</>
 	);

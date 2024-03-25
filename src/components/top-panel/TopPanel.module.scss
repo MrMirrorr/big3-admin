@@ -1,29 +1,57 @@
+@import '/src/styles/mixins.scss';
+
 .topPanel {
 	width: 100%;
 	margin-bottom: 32px;
 	display: flex;
-	// justify-content: space-between;
 	gap: 20px;
+
+	@include mobile {
+		margin-bottom: 16px;
+		flex-direction: column;
+		gap: 16px;
+	}
 }
 
 .search {
 	flex-basis: 364px;
 	min-width: 160px;
 	display: flex;
+
+	@include mobile {
+		flex-basis: auto;
+		justify-content: center;
+	}
 }
 
 .multiSelect {
 	flex-basis: 364px;
 	min-width: 160px;
+
+	@include mobile {
+		flex-basis: auto;
+		display: flex;
+		justify-content: center;
+	}
 }
 
 .btn {
 	flex-grow: 1;
 	text-align: right;
 
+	@include mobile {
+		display: flex;
+		justify-content: center;
+	}
+
 	button {
 		display: inline-block;
 		max-width: 104px;
+		min-width: 104px;
 		white-space: nowrap;
+
+		@include mobile {
+			max-width: 366px;
+		}
 	}
 }

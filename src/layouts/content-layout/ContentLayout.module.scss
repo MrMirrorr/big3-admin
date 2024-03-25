@@ -10,9 +10,22 @@
 	align-items: center;
 	background-color: var(--color-lightest-grey-1);
 
+	@include desktop-sm {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+
 	@include mobile {
 		min-height: calc(100dvh - 62px);
 		margin-left: 0;
+		padding: 16px 12px;
+	}
+
+	&.noPaddingX {
+		@include mobile {
+			padding-left: 0;
+			padding-right: 0;
+		}
 	}
 }
 
@@ -23,7 +36,4 @@
 
 .pagination {
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }

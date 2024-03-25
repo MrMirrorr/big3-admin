@@ -1,8 +1,15 @@
+@import '/src/styles/mixins.scss';
+
 .breadcrumbs {
 	padding: 24px 32px;
 	color: var(--color-black);
 	border-radius: 10px 10px 0 0;
 	background-color: var(--color-white);
+
+	@include mobile {
+		padding: 16px;
+		border-radius: 0;
+	}
 
 	a {
 		color: var(--color-black);

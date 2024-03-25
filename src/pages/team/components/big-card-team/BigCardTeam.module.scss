@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .card {
 	width: 100%;
 	max-width: 1440px;
@@ -6,6 +8,11 @@
 	border-radius: 10px;
 	background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
 	overflow: hidden;
+
+	@include mobile {
+		margin: 0 0 16px;
+		border-radius: 0;
+	}
 }
 
 .info {
@@ -13,6 +20,14 @@
 	display: flex;
 	align-items: center;
 	color: var(--color-white);
+
+	@include mobile-lg {
+		flex-direction: column;
+	}
+
+	@include mobile {
+		padding: 48px 15px;
+	}
 }
 
 .image {
@@ -20,6 +35,16 @@
 	flex-basis: 44%;
 	display: flex;
 	justify-content: center;
+
+	@include mobile-lg {
+		margin-bottom: 40px;
+	}
+
+	@include mobile {
+		width: 90px;
+		min-width: auto;
+		margin-bottom: 48px;
+	}
 }
 
 .description {
@@ -32,25 +57,58 @@
 		'title title'
 		'. .'
 		'. .';
+
+	@include mobile-lg {
+		column-gap: 40px;
+	}
+
+	@include mobile {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		gap: 0;
+	}
 }
 
 .title {
 	grid-area: title;
-	margin: 0 0 40px 0;
+	margin-top: 0;
+	margin-bottom: 40px;
 	font-size: 36px;
 	font-weight: var(--font-weight-bold);
+
+	@include mobile {
+		margin-bottom: 48px;
+		font-size: 17px;
+	}
 }
 
 .infoGroup {
 	margin-bottom: 54px;
+
+	@include mobile {
+		margin-bottom: 32px;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 .label {
 	margin-bottom: 8px;
 	font-size: 24px;
 	font-weight: var(--font-weight-bold);
+
+	@include mobile {
+		font-size: 17px;
+	}
 }
 
 .value {
 	font-size: 18px;
+
+	@include mobile {
+		font-size: 15px;
+	}
 }

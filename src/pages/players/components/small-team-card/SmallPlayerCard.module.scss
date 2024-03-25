@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .card {
 	display: flex;
 	flex-direction: column;
@@ -20,16 +22,25 @@
 	overflow: hidden;
 	position: relative;
 
+	@include mobile {
+		height: 104px;
+	}
+
 	img {
 		width: 100%;
 		max-width: 274px;
 		position: absolute;
 		bottom: 0;
+
+		@include mobile {
+			max-width: 121.5px;
+		}
 	}
 }
 
 .bottom {
 	height: 100px;
+	padding: 5px 8px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -37,6 +48,11 @@
 	gap: 12px;
 	background-color: var(--color-dark-grey);
 	overflow: hidden;
+
+	@include mobile {
+		height: 76px;
+		gap: 6px;
+	}
 }
 
 .name {
@@ -46,6 +62,12 @@
 	color: var(--color-white);
 	text-align: center;
 
+	@include mobile {
+		font-family: var(--font-family-main);
+		font-size: 15px;
+		font-weight: var(--font-weight-normal);
+	}
+
 	span {
 		color: var(--color-light-red);
 	}
@@ -53,4 +75,9 @@
 
 .description {
 	color: var(--color-light-grey);
+	text-align: center;
+
+	@include mobile {
+		font-size: 13px;
+	}
 }

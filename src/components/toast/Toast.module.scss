@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .toast {
 	padding: 8px 16px;
 
@@ -13,6 +15,12 @@
 	z-index: 999;
 	transition: all 0.5s ease-in-out;
 
+	@include mobile {
+		max-width: 280px;
+		font-size: 1rem;
+		top: 5px;
+	}
+
 	&.error {
 		background-color: var(--color-light-red);
 	}
@@ -23,5 +31,9 @@
 
 	&.visible {
 		right: 36px;
+
+		@include mobile {
+			right: 5px;
+		}
 	}
 }

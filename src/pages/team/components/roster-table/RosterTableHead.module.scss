@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 thead.head {
 	text-align: left;
 
@@ -5,5 +7,15 @@ thead.head {
 		padding-top: 10px;
 		padding-bottom: 10px;
 		border-bottom: 1px solid var(--color-light-grey);
+
+		@include mobile-lg {
+			&:nth-child(n + 3) {
+				display: none;
+			}
+		}
+
+		@include mobile {
+			font-size: 15px;
+		}
 	}
 }

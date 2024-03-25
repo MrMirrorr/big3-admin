@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .maskImg {
 	width: 100%;
 	max-width: 336px;
@@ -16,8 +18,32 @@
 	cursor: pointer;
 	overflow: hidden;
 
+	@include mobile {
+		width: 185px;
+		height: 144px;
+		min-width: auto;
+		min-height: auto;
+	}
+
 	input {
 		display: none;
+	}
+
+	img {
+		@include mobile {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	svg {
+		width: 71px;
+		height: auto;
+
+		@include mobile {
+			width: 39px;
+		}
 	}
 }
 

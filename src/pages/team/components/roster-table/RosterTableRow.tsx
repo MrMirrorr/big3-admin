@@ -5,14 +5,21 @@ import styles from './RosterTableRow.module.scss';
 
 interface Props {
 	players?: IPlayerResponse[];
+	isLoading: boolean;
 }
 
-export const RosterTableRow = ({ players = [] }: Props) => {
+export const RosterTableRow = ({ players = [], isLoading }: Props) => {
 	const navigate = useNavigate();
 
 	return (
 		<tbody className={styles.body}>
-			{players && players.length ? (
+			{isLoading ? (
+				<tr>
+					<td colSpan={5} className={styles.empty}>
+						Loading ...
+					</td>
+				</tr>
+			) : players && players.length ? (
 				players.map((player) => (
 					<tr
 						className={styles.row}

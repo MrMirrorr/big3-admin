@@ -3,6 +3,7 @@ import { PrivateRoute, WithAuthCheck } from '../components';
 import { TeamRoutes } from './TeamRoutes';
 import { AuthRoutes } from './AuthRoutes';
 import { PlayerRoutes } from './PlayerRoutes';
+import { Page404 } from './404/Pge404';
 
 export const Routes = () => {
 	return (
@@ -33,6 +34,7 @@ export const Routes = () => {
 						</PrivateRoute>
 					}
 				/>
+				<Route path="*" element={<Page404 />} />
 			</ReactRoutes>
 		</BrowserRouter>
 	);

@@ -53,7 +53,7 @@ export const Player = () => {
 
 	return (
 		<AppLayout>
-			<ContentLayout>
+			<ContentLayout isNoPaddingX>
 				{isLoading ? (
 					<Preloader />
 				) : isError ? (

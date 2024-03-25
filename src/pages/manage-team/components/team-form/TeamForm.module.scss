@@ -1,54 +1,32 @@
+@import '/src/styles/mixins.scss';
+
 .form {
 	display: flex;
 	width: 100%;
 	padding: 48px 24px;
 	border-radius: 0 0 10px 10px;
 	background-color: var(--color-white);
+
+	@include mobile {
+		flex-direction: column;
+		align-items: center;
+		border-radius: 0;
+	}
 }
 
 .left {
 	flex-basis: 48%;
 	padding-left: 41px;
-}
 
-.maskImg {
-	width: 100%;
-	max-width: 336px;
-	height: auto;
-	min-height: 200px;
-	max-height: 261px;
-	padding: 2px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	border-radius: 10px;
-	background-color: var(--color-light-grey);
-	opacity: 50%;
-	position: relative;
-	cursor: pointer;
-	overflow: hidden;
-
-	input {
-		display: none;
+	@include tablet {
+		flex-basis: 40%;
+		padding-left: 0;
 	}
-}
 
-.errorMsg {
-	margin-top: 2px;
-
-	font-size: 0.86rem;
-	line-height: 1.5;
-	color: var(--color-lightest-red);
-}
-
-.addPhotoImg {
-	width: 22%;
-	min-width: 41px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	@include mobile {
+		flex-basis: auto;
+		margin-bottom: 48px;
+	}
 }
 
 .right {
@@ -57,10 +35,37 @@
 	flex-direction: column;
 	gap: 24px;
 	padding-left: 24px;
+
+	@include tablet {
+		flex-basis: 60%;
+	}
+
+	@include mobile {
+		flex-basis: auto;
+		width: 100%;
+		align-items: center;
+		padding-left: 0;
+	}
+
+	label {
+		@include mobile {
+			font-size: 17px;
+		}
+	}
+
+	input {
+		@include mobile {
+			font-size: 15px;
+		}
+	}
 }
 
 .controls {
 	max-width: 366px;
 	display: flex;
 	gap: 24px;
+
+	@include mobile {
+		width: 100%;
+	}
 }

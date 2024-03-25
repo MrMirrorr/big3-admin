@@ -1,5 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import { ReactComponent as ArrowIcon } from './arrow.svg';
+import { usePageRange } from './usePageRange';
 
 interface Props {
 	pageCount: number;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export const Pagination = ({ pageCount, page, handlePageChange }: Props) => {
+	const { pageRange } = usePageRange();
+
 	const onPageChange = (event: { selected: number }) => {
 		handlePageChange(event.selected + 1);
 	};
@@ -20,7 +23,7 @@ export const Pagination = ({ pageCount, page, handlePageChange }: Props) => {
 			breakLabel="..."
 			nextLabel={<ArrowIcon />}
 			onPageChange={onPageChange}
-			pageRangeDisplayed={4}
+			pageRangeDisplayed={pageRange}
 			pageCount={pageCount}
 			previousLabel={<ArrowIcon />}
 			marginPagesDisplayed={1}

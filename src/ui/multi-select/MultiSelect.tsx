@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Select, { MultiValue } from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { IOption } from '../sharedTypes';
+const animatedComponents = makeAnimated();
 
 interface Props<T extends string | number> {
 	options: IOption<T>[];
@@ -29,6 +31,7 @@ export const MultiSelect = <T extends string | number>({
 		<Select
 			className="select select--multi"
 			classNamePrefix="custom-select"
+			components={animatedComponents}
 			options={options}
 			value={getValues()}
 			onChange={onChangeMulti}

@@ -1,3 +1,5 @@
+@import '/src/styles/mixins.scss';
+
 .row {
 	cursor: pointer;
 	transition: background-color 0.1s ease-in-out;
@@ -9,6 +11,12 @@
 	td {
 		width: auto;
 		border-bottom: 1px solid var(--color-light-grey);
+
+		@include mobile-lg {
+			&:nth-child(n + 3) {
+				display: none;
+			}
+		}
 
 		&.player {
 			width: 100%;
@@ -22,6 +30,10 @@
 
 .number {
 	text-align: center;
+
+	@include mobile {
+		font-size: 13px;
+	}
 }
 
 .player {
@@ -46,11 +58,23 @@
 	}
 
 	.right {
+		height: 40px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		text-wrap: nowrap;
+
+		@include mobile {
+			font-size: 15px;
+		}
 
 		.position {
 			font-size: 12px;
 			color: var(--color-light-grey);
+
+			@include mobile {
+				font-size: 13px;
+			}
 		}
 	}
 }

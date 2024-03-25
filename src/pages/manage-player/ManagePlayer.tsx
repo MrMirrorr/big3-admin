@@ -27,7 +27,7 @@ export const ManagePlayer = ({ pageVariant }: Props) => {
 
 	return (
 		<AppLayout>
-			<ContentLayout>
+			<ContentLayout isNoPaddingX>
 				<Breadcrumbs crumbs={crumbs} />
 				<PlayerForm />
 			</ContentLayout>
